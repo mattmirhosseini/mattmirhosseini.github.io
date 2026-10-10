@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Matt</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media='all'"/>
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"/>
+    </noscript>
+    <link href="css/font-awesome/css/all.min.css?ver=1.2.0" rel="stylesheet">
+    <link href="css/bootstrap.min.css?ver=1.2.0" rel="stylesheet">
+    <link href="css/aos.css?ver=1.2.0" rel="stylesheet">
+    <link href="css/main.css?ver=1.2.0" rel="stylesheet">
+    <style>
+      /* General styles */
+      .gallery-section img {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        border-radius: 8px; /* Rounded corners for images */
+      }
+      .gallery-section img:hover {
+        transform: scale(1.05);
+      }
+      .image-description {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #555;
+        text-align: center;
+        padding: 0 10px;
+      }
+      .lightbox-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        cursor: pointer;
+      }
+      .lightbox-image {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 8px; /* Rounded corners for lightbox image */
+      }
+      .gallery-item {
+        margin-bottom: 20px; /* Space between gallery items */
+      }
+      .section-divider {
+        width: 100%;
+        height: 1px;
+        background-color: #ddd;
+        margin: 40px 0;
+      }
+      .section-header {
+        text-align: center;
+        font-size: 24px;
+        margin: 20px 0 ; /* Added more margin-top to bring it down */
+        color: #333;
+      }
+      .section-subtext {
+        text-align: center;
+        font-size: 16px;
+        color: #777;
+        margin-bottom: 30px;
+      }
+      /* Smaller text for Home and New Page buttons */
+      header .nav-link {
+        font-size: 14px; /* Adjust this value to make the text smaller */
+      }
+    </style>
+    <noscript>
+      <style type="text/css">
+        [data-aos] {
+            opacity: 1 !important;
+            transform: translate(0) scale(1) !important;
+        }
+      </style>
+    </noscript>
+  </head>
+  <body id="top">
+    <header class="d-print-none">
+      <div class="container text-center text-lg-left">
+        <div class="py-3 clearfix">
+          <h1 class="site-title mb-0">Matt Mirhosseini</h1>
+          <div class="site-nav">
+            <nav role="navigation">
+              <ul class="nav justify-content-center">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="MyArt.html">My Photography</a></li>
+                <li class="nav-item"><a class="nav-link" href="Shiraz.html">Shiraz</a></li>
+                <li class="nav-item"><a class="nav-link" href="Tabriz.html">Tabriz</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://twitter.com/matmirhosseini" title="Twitter"><i class="fab fa-twitter"></i><span class="menu-title sr-only">Twitter</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook"><i class="fab fa-facebook"></i><span class="menu-title sr-only">Facebook</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram"><i class="fab fa-instagram"></i><span class="menu-title sr-only">Instagram</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/mattmirhosseini" title="Github"><i class="fab fa-github"></i><span class="menu-title sr-only">Github</span></a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <div class="page-content">
+      <div class="container">
+        <div class="cover shadow-lg bg-white">
+
+            
+            <!-- Section Divider and Header -->
+            <div class="section-divider"></div>
+            <div class="gallery-section px-3 px-lg-4 pb-4">
+            <h3 class="section-header">My Isfahan Trip</h3>
+            <p class="section-subtext">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <div class="row">
+            <!-- Isfahan1 -->
+              <div class="col-md-4 col-sm-6 mb-3 gallery-item">
+                <a href="images/3.jpg" class="image-link">
+                  <img src="images/3.jpg" class="img-fluid" alt="Image 3">
+                </a>
+                <div class="image-description">
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </div>
+              </div>
+            </div>
+
+            </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+    
+    <footer class="pt-4 pb-4 text-muted text-center d-print-none">
+      <div class="container">
+        <div class="my-3">
+          <div class="h4">Matt Mirhosseini</div>
+          <div class="footer-nav">
+            <nav role="navigation">
+              <ul class="nav justify-content-center">
+                <li class="nav-item"><a class="nav-link" href="https://twitter.com/mattmirhosseini" title="Twitter"><i class="fab fa-twitter"></i><span class="menu-title sr-only">Twitter</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook"><i class="fab fa-facebook"></i><span class="menu-title sr-only">Facebook</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram"><i class="fab fa-instagram"></i><span class="menu-title sr-only">Instagram</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/mattmirhosseini" title="Github"><i class="fab fa-github"></i><span class="menu-title sr-only">Github</span></a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div class="text-small">
+          <div class="mb-1">&copy; All rights reserved.</div>
+          <div>Design - <a href="https://templateflip.com/" target="_blank">TemplateFlip</a></div>
+        </div>
+      </div>
+    </footer>
+    
+    <div class="lightbox-overlay">
+      <img src="" class="lightbox-image" alt="Enlarged view">
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const images = document.querySelectorAll(".gallery-section img");
+        const overlay = document.querySelector(".lightbox-overlay");
+        
+        images.forEach(img => {
+          img.addEventListener("click", function (e) {
+            e.preventDefault();
+            overlay.innerHTML = `<img src="${this.src}" class="lightbox-image">`;
+            overlay.style.display = "flex";
+          });
+        });
+
+        overlay.addEventListener("click", function () {
+          this.style.display = "none";
+        });
+      });
+    </script>
+    <script src="scripts/bootstrap.bundle.min.js?ver=1.2.0"></script>
+    <script src="scripts/aos.js?ver=1.2.0"></script>
+    <script src="scripts/main.js?ver=1.2.0"></script>
+  </body>
+</html>
