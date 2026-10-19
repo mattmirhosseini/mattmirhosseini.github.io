@@ -1,227 +1,865 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Photography Collection</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media='all'"/>
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"/>
-    </noscript>
-    <link href="css/font-awesome/css/all.min.css?ver=1.2.0" rel="stylesheet">
-    <link href="css/bootstrap.min.css?ver=1.2.0" rel="stylesheet">
-    <link href="css/aos.css?ver=1.2.0" rel="stylesheet">
-    <link href="css/main.css?ver=1.2.0" rel="stylesheet">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>My Photography Collection | Matt Mirhosseini</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media='all'">
+
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap">
+  </noscript>
+
+  <link href="css/font-awesome/css/all.min.css?ver=1.2.0" rel="stylesheet">
+  <link href="css/bootstrap.min.css?ver=1.2.0" rel="stylesheet">
+  <link href="css/aos.css?ver=1.2.0" rel="stylesheet">
+  <link href="css/main.css?ver=1.2.0" rel="stylesheet">
+  <link href="css/gallery.css?v=1" rel="stylesheet">
+
+  <style>
+    header .nav-link {
+      font-size: 14px;
+    }
+
+    .portfolio-intro {
+      text-align: center;
+      padding: 35px 15px 10px;
+    }
+
+    .portfolio-intro h2 {
+      color: #292929;
+      font-size: 30px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .portfolio-intro p {
+      color: #777;
+      font-size: 16px;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background-color: #e5e5e5;
+      margin: 35px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      font-size: 24px;
+      margin: 20px 0 12px;
+      color: #333;
+    }
+
+    .section-subtext {
+      text-align: center;
+      font-size: 15px;
+      color: #777;
+      margin: 0 auto 28px;
+      max-width: 650px;
+      line-height: 1.7;
+    }
+
+    /* Featured collections */
+
+    .collection-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+      margin: 25px 0 10px;
+    }
+
+    .collection-card {
+      display: block;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #f0f0f0;
+      color: #fff;
+      text-decoration: none !important;
+      aspect-ratio: 4 / 5;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      isolation: isolate;
+    }
+
+    .collection-card img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s ease;
+    }
+
+    .collection-card:hover img,
+    .collection-card:focus-visible img {
+      transform: scale(1.06);
+    }
+
+    .collection-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.82) 0%,
+        rgba(0, 0, 0, 0.25) 45%,
+        rgba(0, 0, 0, 0.02) 100%
+      );
+      z-index: 0;
+    }
+
+    .collection-card-text {
+      position: absolute;
+      z-index: 1;
+      left: 18px;
+      right: 18px;
+      bottom: 20px;
+      color: #fff;
+    }
+
+    .collection-card-text h3 {
+      font-size: 21px;
+      font-weight: 600;
+      margin: 0 0 6px;
+      color: #fff;
+    }
+
+    .collection-card-text p {
+      font-size: 13px;
+      line-height: 1.5;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .collection-arrow {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    /* Main gallery */
+
+    .photo-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      align-items: start;
+    }
+
+    .photo-card {
+      min-width: 0;
+      margin: 0;
+    }
+
+    .photo-link {
+      display: block;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #f2f2f2;
+    }
+
+    .photo-link img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.35s ease;
+    }
+
+    .photo-link:hover img {
+      transform: scale(1.025);
+    }
+
+    .photo-caption {
+      margin-top: 11px;
+      padding: 0 4px;
+      text-align: center;
+      color: #555;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* Lightbox */
+
+    .photo-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.96);
+      align-items: center;
+      justify-content: center;
+      padding: 55px 65px 30px;
+    }
+
+    .photo-lightbox.is-open {
+      display: flex;
+    }
+
+    .lightbox-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      width: 100%;
+      height: 100%;
+      max-width: 1450px;
+      min-height: 0;
+    }
+
+    .lightbox-image-wrap {
+      flex: 1 1 auto;
+      min-width: 0;
+      min-height: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-image-wrap img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 5px;
+    }
+
+    .photo-info {
+      flex: 0 0 260px;
+      max-height: 100%;
+      overflow-y: auto;
+      color: #eee;
+      font-size: 13px;
+      line-height: 1.7;
+      padding: 8px 4px;
+    }
+
+    .photo-info h3 {
+      color: #fff;
+      font-size: 20px;
+      margin: 0 0 10px;
+      overflow-wrap: anywhere;
+    }
+
+    .photo-info p {
+      color: #ccc;
+      margin-bottom: 20px;
+      overflow-wrap: anywhere;
+    }
+
+    #exifDetails {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 12px;
+    }
+
+    .exif-row {
+      margin-bottom: 7px;
+      overflow-wrap: anywhere;
+    }
+
+    .exif-row strong {
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .lightbox-close,
+    .lightbox-nav {
+      position: absolute;
+      border: 0;
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      transition: background 0.2s ease;
+    }
+
+    .lightbox-close:hover,
+    .lightbox-nav:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .lightbox-close {
+      top: 15px;
+      right: 22px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .lightbox-nav {
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 55px;
+      border-radius: 6px;
+      font-size: 22px;
+    }
+
+    .lightbox-prev {
+      left: 12px;
+    }
+
+    .lightbox-next {
+      right: 12px;
+    }
+
+    @media (max-width: 1000px) {
+      .collection-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .photo-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .lightbox-content {
+        gap: 18px;
+      }
+
+      .photo-info {
+        flex-basis: 220px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .portfolio-intro {
+        padding-top: 25px;
+      }
+
+      .portfolio-intro h2 {
+        font-size: 25px;
+      }
+
+      .collection-grid {
+        gap: 12px;
+      }
+
+      .collection-card {
+        aspect-ratio: 3 / 4;
+        border-radius: 9px;
+      }
+
+      .collection-card-text {
+        left: 12px;
+        right: 12px;
+        bottom: 13px;
+      }
+
+      .collection-card-text h3 {
+        font-size: 17px;
+      }
+
+      .collection-card-text p {
+        font-size: 12px;
+      }
+
+      .collection-arrow {
+        margin-top: 8px;
+        font-size: 10px;
+      }
+
+      .photo-gallery {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .photo-lightbox {
+        padding: 55px 15px 20px;
+        overflow-y: auto;
+        align-items: flex-start;
+      }
+
+      .lightbox-content {
+        height: auto;
+        min-height: 100%;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .lightbox-image-wrap {
+        flex: 0 0 auto;
+        width: 100%;
+        height: auto;
+        min-height: 200px;
+      }
+
+      .lightbox-image-wrap img {
+        max-width: 100%;
+        max-height: 58vh;
+      }
+
+      .photo-info {
+        flex: 0 0 auto;
+        width: 100%;
+        max-height: none;
+        padding: 0 8px 20px;
+      }
+
+      .lightbox-prev {
+        left: 5px;
+      }
+
+      .lightbox-next {
+        right: 5px;
+      }
+
+      .lightbox-nav {
+        width: 34px;
+        height: 45px;
+        font-size: 18px;
+      }
+    }
+  </style>
+
+  <noscript>
     <style>
-      /* General styles */
-      .gallery-section img {
-        cursor: pointer;
-        transition: transform 0.3s ease;
-        border-radius: 8px; /* Rounded corners for images */
-      }
-      .gallery-section img:hover {
-        transform: scale(1.05);
-      }
-      .image-description {
-        margin-top: 10px;
-        font-size: 14px;
-        color: #555;
-        text-align: center;
-        padding: 0 10px;
-      }
-      .lightbox-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-        cursor: pointer;
-      }
-      .lightbox-image {
-        max-width: 90%;
-        max-height: 90%;
-        object-fit: contain;
-        border-radius: 8px; /* Rounded corners for lightbox image */
-      }
-      .gallery-item {
-        margin-bottom: 20px; /* Space between gallery items */
-      }
-      .section-divider {
-        width: 100%;
-        height: 1px;
-        background-color: #ddd;
-        margin: 40px 0;
-      }
-      .section-header {
-        text-align: center;
-        font-size: 24px;
-        margin: 20px 0 ; /* Added more margin-top to bring it down */
-        color: #333;
-      }
-      .section-subtext {
-        text-align: center;
-        font-size: 16px;
-        color: #777;
-        margin-bottom: 30px;
-      }
-      /* Smaller text for Home and New Page buttons */
-      header .nav-link {
-        font-size: 14px; /* Adjust this value to make the text smaller */
+      [data-aos] {
+        opacity: 1 !important;
+        transform: translate(0) scale(1) !important;
       }
     </style>
-    <noscript>
-      <style type="text/css">
-        [data-aos] {
-            opacity: 1 !important;
-            transform: translate(0) scale(1) !important;
-        }
-      </style>
-    </noscript>
-  </head>
-  <body id="top">
-    <header class="d-print-none">
-      <div class="container text-center text-lg-left">
-        <div class="py-3 clearfix">
-          <h1 class="site-title mb-0">Matt Mirhosseini</h1>
-          <div class="site-nav">
-            <nav role="navigation">
-              <ul class="nav justify-content-center">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="MyArt.html">My Photography</a></li>
-                <li class="nav-item"><a class="nav-link" href="birding.html">Birding</a></li>
-                <li class="nav-item"><a class="nav-link" href="Shiraz.html">Shiraz</a></li>
-                <li class="nav-item"><a class="nav-link" href="Tabriz.html">Tabriz</a></li>
-                <li class="nav-item"><a class="nav-link" href="Isfahan.html">Isfahan</a></li>
-                <li class="nav-item"><a class="nav-link" href="https://twitter.com/mattmirhosseini" title="Twitter"><i class="fab fa-twitter"></i><span class="menu-title sr-only">Twitter</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook"><i class="fab fa-facebook"></i><span class="menu-title sr-only">Facebook</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram"><i class="fab fa-instagram"></i><span class="menu-title sr-only">Instagram</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="https://github.com/mattmirhosseini" title="Github"><i class="fab fa-github"></i><span class="menu-title sr-only">Github</span></a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </header>
-    
-    <div class="page-content">
-      <div class="container">
-        <div class="cover shadow-lg bg-white">
-          <div class="section-divider"></div>
-          <div class="gallery-section px-3 px-lg-4 pb-4">
-            <h3 class="section-header">Photo Gallery</h3>
-            <p class="section-subtext">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            
-            <div class="row">
-              <!-- Gallery Item 1 -->
-              <div class="col-md-4 col-sm-6 mb-3 gallery-item">
-                <a href="images/1.jpg" class="image-link">
-                  <img src="images/1.jpg" class="img-fluid" alt="Image 1">
-                </a>
-                <div class="image-description">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </div>
-              </div>
-              <!-- Gallery Item 2 -->
-              <div class="col-md-4 col-sm-6 mb-3 gallery-item">
-                <a href="images/2.jpg" class="image-link">
-                  <img src="images/2.jpg" class="img-fluid" alt="Image 2">
-                </a>
-                <div class="image-description">
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </div>
-              </div>          
-              <!-- Gallery Item 8 -->
-              <div class="col-md-4 col-sm-6 mb-3 gallery-item">
-                <a href="images/8.jpg" class="image-link">
-                  <img src="images/8.jpg" class="img-fluid" alt="Image 8">
-                </a>
-                <div class="image-description">
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </div>
-              </div>
-              <!-- Gallery Item 9 -->
-              <div class="col-md-4 col-sm-6 mb-3 gallery-item">
-                <a href="images/9.jpg" class="image-link">
-                  <img src="images/9.jpg" class="img-fluid" alt="Image 9">
-                </a>
-                <div class="image-description">
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </div>
-              </div>
-              <!-- Gallery Item 10 -->
-              <div class="col-md-4 col-sm-6 mb-3 gallery-item">
-                <a href="images/10.jpg" class="image-link">
-                  <img src="images/10.jpg" class="img-fluid" alt="Image 10">
-                </a>
-                <div class="image-description">
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </div>
-              </div>
-            </div>
-            
-            
-          
-            </div>
-                     
-            </div>
-          </div> 
-        </div>
-      </div>
-    </div>
-    
-    <footer class="pt-4 pb-4 text-muted text-center d-print-none">
-      <div class="container">
-        <div class="my-3">
-          <div class="h4">Matt Mirhosseini</div>
-          <div class="footer-nav">
-            <nav role="navigation">
-              <ul class="nav justify-content-center">
-                <li class="nav-item"><a class="nav-link" href="https://twitter.com/mattmirhosseini" title="Twitter"><i class="fab fa-twitter"></i><span class="menu-title sr-only">Twitter</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook"><i class="fab fa-facebook"></i><span class="menu-title sr-only">Facebook</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram"><i class="fab fa-instagram"></i><span class="menu-title sr-only">Instagram</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="https://github.com/mattmirhosseini" title="Github"><i class="fab fa-github"></i><span class="menu-title sr-only">Github</span></a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <div class="text-small">
-          <div class="mb-1">&copy; All rights reserved.</div>
-          <div>Design - <a href="https://templateflip.com/" target="_blank">TemplateFlip</a></div>
-        </div>
-      </div>
-    </footer>
-    
-    <div class="lightbox-overlay">
-      <img src="" class="lightbox-image" alt="Enlarged view">
-    </div>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const images = document.querySelectorAll(".gallery-section img");
-        const overlay = document.querySelector(".lightbox-overlay");
-        
-        images.forEach(img => {
-          img.addEventListener("click", function (e) {
-            e.preventDefault();
-            overlay.innerHTML = `<img src="${this.src}" class="lightbox-image">`;
-            overlay.style.display = "flex";
-          });
-        });
+  </noscript>
+</head>
 
-        overlay.addEventListener("click", function () {
-          this.style.display = "none";
+<body id="top">
+
+  <header class="d-print-none">
+    <div class="container text-center text-lg-left">
+      <div class="py-3 clearfix">
+        <h1 class="site-title mb-0">Matt Mirhosseini</h1>
+
+        <div class="site-nav">
+          <nav role="navigation">
+            <ul class="nav justify-content-center">
+              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="MyArt.html">My Photography</a></li>
+              <li class="nav-item"><a class="nav-link" href="birding.html">Birding</a></li>
+              <li class="nav-item"><a class="nav-link" href="Shiraz.html">Shiraz</a></li>
+              <li class="nav-item"><a class="nav-link" href="Tabriz.html">Tabriz</a></li>
+              <li class="nav-item"><a class="nav-link" href="Isfahan.html">Isfahan</a></li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="https://twitter.com/mattmirhosseini" title="Twitter">
+                  <i class="fab fa-twitter"></i><span class="menu-title sr-only">Twitter</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook">
+                  <i class="fab fa-facebook"></i><span class="menu-title sr-only">Facebook</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram">
+                  <i class="fab fa-instagram"></i><span class="menu-title sr-only">Instagram</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://github.com/mattmirhosseini" title="Github">
+                  <i class="fab fa-github"></i><span class="menu-title sr-only">Github</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="container">
+      <div class="cover shadow-lg bg-white">
+
+        <section class="portfolio-intro">
+          <h2>My Photography</h2>
+          <p>
+            A collection of moments, places, and wildlife captured through my lens.
+            Explore the different collections or browse my photographs below.
+          </p>
+        </section>
+
+        <section class="px-3 px-lg-4 pb-4">
+          <h3 class="section-header">Explore My Collections</h3>
+          <p class="section-subtext">
+            Discover photographs from different places and my birding adventures.
+          </p>
+
+          <div class="collection-grid">
+
+            <a class="collection-card" href="Tabriz.html">
+              <img src="images/Tabriz1.jpg" alt="Photographs from Tabriz" loading="lazy">
+              <div class="collection-card-text">
+                <h3>Tabriz</h3>
+                <p>Architecture, streets, and city life</p>
+                <span class="collection-arrow">Explore collection &rarr;</span>
+              </div>
+            </a>
+
+            <a class="collection-card" href="Isfahan.html">
+              <img src="images/3.jpg" alt="Photographs from Isfahan" loading="lazy">
+              <div class="collection-card-text">
+                <h3>Isfahan</h3>
+                <p>Scenes from the historic city</p>
+                <span class="collection-arrow">Explore collection &rarr;</span>
+              </div>
+            </a>
+
+            <a class="collection-card" href="Shiraz.html">
+              <img src="images/1.jpg" alt="Travel photography from Shiraz" loading="lazy">
+              <div class="collection-card-text">
+                <h3>Shiraz</h3>
+                <p>Travel and city photography</p>
+                <span class="collection-arrow">Explore collection &rarr;</span>
+              </div>
+            </a>
+
+            <a class="collection-card" href="birding.html">
+              <img src="images/birding01.jpg" alt="Bird photography collection" loading="lazy">
+              <div class="collection-card-text">
+                <h3>Birding</h3>
+                <p>Birds, wildlife, and nature</p>
+                <span class="collection-arrow">Explore collection &rarr;</span>
+              </div>
+            </a>
+
+          </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <section class="px-3 px-lg-4 pb-4">
+          <h3 class="section-header">Photo Gallery</h3>
+          <p class="section-subtext">
+            A selection of photographs from my collection. Select any image to view it
+            in full screen and explore its available camera information.
+          </p>
+
+          <div class="photo-gallery" id="photoGallery"></div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="pt-4 pb-4 text-muted text-center d-print-none">
+    <div class="container">
+      <div class="my-3">
+        <div class="h4">Matt Mirhosseini</div>
+
+        <div class="footer-nav">
+          <nav role="navigation">
+            <ul class="nav justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link" href="https://twitter.com/mattmirhosseini" title="Twitter">
+                  <i class="fab fa-twitter"></i><span class="menu-title sr-only">Twitter</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook">
+                  <i class="fab fa-facebook"></i><span class="menu-title sr-only">Facebook</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram">
+                  <i class="fab fa-instagram"></i><span class="menu-title sr-only">Instagram</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://github.com/mattmirhosseini" title="Github">
+                  <i class="fab fa-github"></i><span class="menu-title sr-only">Github</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="text-small">
+        <div class="mb-1">&copy; All rights reserved.</div>
+        <div>
+          Design -
+          <a href="https://templateflip.com/" target="_blank" rel="noopener">TemplateFlip</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Full-screen photo viewer -->
+  <div class="photo-lightbox" id="photoLightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close viewer">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" type="button" aria-label="Previous photo">&#10094;</button>
+
+    <div class="lightbox-content">
+      <div class="lightbox-image-wrap">
+        <img id="lightboxImage" src="" alt="">
+      </div>
+
+      <div class="photo-info">
+        <h3 id="photoTitle"></h3>
+        <p id="photoDescription"></p>
+        <div id="exifDetails"></div>
+      </div>
+    </div>
+
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" type="button" aria-label="Next photo">&#10095;</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const photos = [
+        {
+          file: "images/1.jpg",
+          title: "Photograph 1",
+          description: "Add a description for this photograph."
+        },
+        {
+          file: "images/2.jpg",
+          title: "Photograph 2",
+          description: "Add a description for this photograph."
+        },
+        {
+          file: "images/8.jpg",
+          title: "Photograph 8",
+          description: "Add a description for this photograph."
+        },
+        {
+          file: "images/9.jpg",
+          title: "Photograph 9",
+          description: "Add a description for this photograph."
+        },
+        {
+          file: "images/10.jpg",
+          title: "Photograph 10",
+          description: "Add a description for this photograph."
+        }
+      ];
+
+      const gallery = document.getElementById("photoGallery");
+      const viewer = document.getElementById("photoLightbox");
+      const viewerImage = document.getElementById("lightboxImage");
+      const title = document.getElementById("photoTitle");
+      const description = document.getElementById("photoDescription");
+      const details = document.getElementById("exifDetails");
+
+      const closeButton = document.getElementById("lightboxClose");
+      const previousButton = document.getElementById("lightboxPrev");
+      const nextButton = document.getElementById("lightboxNext");
+
+      let currentIndex = 0;
+      let requestId = 0;
+
+      photos.forEach(function (photo, index) {
+        const figure = document.createElement("figure");
+        figure.className = "photo-card";
+
+        const link = document.createElement("a");
+        link.href = photo.file;
+        link.className = "photo-link";
+        link.dataset.index = index;
+        link.setAttribute("aria-label", "Open " + photo.title);
+
+        const img = document.createElement("img");
+        img.src = photo.file;
+        img.alt = photo.title;
+        img.loading = "lazy";
+        img.decoding = "async";
+
+        const caption = document.createElement("figcaption");
+        caption.className = "photo-caption";
+        caption.textContent = photo.description;
+
+        link.appendChild(img);
+        figure.appendChild(link);
+        figure.appendChild(caption);
+        gallery.appendChild(figure);
+      });
+
+      const links = Array.from(gallery.querySelectorAll(".photo-link"));
+
+      function addRow(label, value) {
+        if (value === undefined || value === null || value === "") return;
+
+        const row = document.createElement("div");
+        row.className = "exif-row";
+
+        const labelElement = document.createElement("strong");
+        labelElement.textContent = label + ": ";
+
+        const valueElement = document.createElement("span");
+        valueElement.textContent = String(value);
+
+        row.appendChild(labelElement);
+        row.appendChild(valueElement);
+        details.appendChild(row);
+      }
+
+      function formatRational(value) {
+        if (value && typeof value === "object" &&
+            value.numerator !== undefined) {
+          return value.numerator / (value.denominator || 1);
+        }
+        return value;
+      }
+
+      function renderExif(image, id) {
+        if (id !== requestId) return;
+
+        details.replaceChildren();
+
+        addRow(
+          "Dimensions",
+          image.naturalWidth + " × " + image.naturalHeight + " px"
+        );
+
+        if (typeof EXIF === "undefined") {
+          addRow("Metadata", "EXIF reader unavailable");
+          return;
+        }
+
+        try {
+          EXIF.getData(image, function () {
+            if (id !== requestId) return;
+
+            const get = tag => EXIF.getTag(this, tag);
+
+            addRow("Camera", get("Model"));
+            addRow("Lens", get("LensModel"));
+
+            const iso = get("ISOSpeedRatings");
+            addRow("ISO", Array.isArray(iso) ? iso.join(", ") : iso);
+
+            const aperture = formatRational(get("FNumber"));
+            if (aperture != null) addRow("Aperture", "f/" + aperture);
+
+            const exposure = formatRational(get("ExposureTime"));
+            if (exposure != null) {
+              const seconds = Number(exposure);
+              const shutter = seconds > 0 && seconds < 1
+                ? "1/" + Math.round(1 / seconds) + " s"
+                : seconds + " s";
+              addRow("Shutter speed", shutter);
+            }
+
+            const focal = formatRational(get("FocalLength"));
+            if (focal != null) addRow("Focal length", focal + " mm");
+
+            addRow("Date taken", get("DateTimeOriginal"));
+            addRow("Exposure compensation", get("ExposureBias"));
+
+            if (details.children.length === 1) {
+              addRow("Metadata", "No EXIF camera data found");
+            }
+          });
+        } catch (error) {
+          if (id === requestId) {
+            addRow("Metadata", "Could not read EXIF data");
+          }
+        }
+      }
+
+      function openPhoto(index) {
+        currentIndex = (index + photos.length) % photos.length;
+
+        const photo = photos[currentIndex];
+        const id = ++requestId;
+
+        title.textContent = photo.title;
+        description.textContent = photo.description;
+        details.replaceChildren();
+
+        viewer.classList.add("is-open");
+        viewer.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+
+        viewerImage.src = photo.file;
+        viewerImage.alt = photo.title;
+
+        const metadataImage = new Image();
+
+        metadataImage.onload = function () {
+          if (id !== requestId) return;
+          renderExif(metadataImage, id);
+        };
+
+        metadataImage.onerror = function () {
+          if (id !== requestId) return;
+          details.replaceChildren();
+          addRow("Metadata", "Could not load image metadata");
+        };
+
+        metadataImage.src = photo.file;
+      }
+
+      function closePhoto() {
+        requestId++;
+        viewer.classList.remove("is-open");
+        viewer.setAttribute("aria-hidden", "true");
+        viewerImage.src = "";
+        document.body.style.overflow = "";
+      }
+
+      links.forEach(function (link, index) {
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
+          openPhoto(index);
         });
       });
-    </script>
-    <script src="scripts/bootstrap.bundle.min.js?ver=1.2.0"></script>
-    <script src="scripts/aos.js?ver=1.2.0"></script>
-    <script src="scripts/main.js?ver=1.2.0"></script>
-  </body>
+
+      closeButton.addEventListener("click", closePhoto);
+
+      previousButton.addEventListener("click", function (event) {
+        event.stopPropagation();
+        openPhoto(currentIndex - 1);
+      });
+
+      nextButton.addEventListener("click", function (event) {
+        event.stopPropagation();
+        openPhoto(currentIndex + 1);
+      });
+
+      viewer.addEventListener("click", function (event) {
+        if (event.target === viewer) closePhoto();
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (!viewer.classList.contains("is-open")) return;
+
+        if (event.key === "Escape") {
+          closePhoto();
+        } else if (event.key === "ArrowLeft") {
+          openPhoto(currentIndex - 1);
+        } else if (event.key === "ArrowRight") {
+          openPhoto(currentIndex + 1);
+        }
+      });
+    });
+  </script>
+
+  <script src="scripts/bootstrap.bundle.min.js?ver=1.2.0"></script>
+  <script src="scripts/aos.js?ver=1.2.0"></script>
+  <script src="scripts/main.js?ver=1.2.0"></script>
+
+</body>
 </html>
