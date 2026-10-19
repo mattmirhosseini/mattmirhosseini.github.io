@@ -4,16 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <title>My Birding Collection</title>
 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media='all'">
-
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap">
-  </noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap">
 
   <link href="css/font-awesome/css/all.min.css?ver=1.2.0" rel="stylesheet">
   <link href="css/bootstrap.min.css?ver=1.2.0" rel="stylesheet">
@@ -47,15 +41,6 @@
       font-size: 14px;
     }
   </style>
-
-  <noscript>
-    <style>
-      [data-aos] {
-        opacity: 1 !important;
-        transform: translate(0) scale(1) !important;
-      }
-    </style>
-  </noscript>
 </head>
 
 <body id="top">
@@ -64,45 +49,15 @@
     <div class="container text-center text-lg-left">
       <div class="py-3 clearfix">
         <h1 class="site-title mb-0">Matt Mirhosseini</h1>
-
         <div class="site-nav">
           <nav role="navigation">
             <ul class="nav justify-content-center">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="MyArt.html">My Photography</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="https://twitter.com/matmirhosseini" title="Twitter">
-                  <i class="fab fa-twitter"></i>
-                  <span class="menu-title sr-only">Twitter</span>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook">
-                  <i class="fab fa-facebook"></i>
-                  <span class="menu-title sr-only">Facebook</span>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram">
-                  <i class="fab fa-instagram"></i>
-                  <span class="menu-title sr-only">Instagram</span>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="https://github.com/mattmirhosseini" title="Github">
-                  <i class="fab fa-github"></i>
-                  <span class="menu-title sr-only">Github</span>
-                </a>
-              </li>
+              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="MyArt.html">My Photography</a></li>
+              <li class="nav-item"><a class="nav-link" href="https://twitter.com/matmirhosseini" title="Twitter"><i class="fab fa-twitter"></i><span class="sr-only">Twitter</span></a></li>
+              <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook"><i class="fab fa-facebook"></i><span class="sr-only">Facebook</span></a></li>
+              <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram"><i class="fab fa-instagram"></i><span class="sr-only">Instagram</span></a></li>
+              <li class="nav-item"><a class="nav-link" href="https://github.com/mattmirhosseini" title="Github"><i class="fab fa-github"></i><span class="sr-only">Github</span></a></li>
             </ul>
           </nav>
         </div>
@@ -110,7 +65,7 @@
     </div>
   </header>
 
-  <main class="page-content">
+  <div class="page-content">
     <div class="container">
       <div class="cover shadow-lg bg-white">
 
@@ -118,71 +73,66 @@
 
         <section class="gallery-section px-3 px-lg-4 pb-4">
           <h3 class="section-header">My Birding Photo Collection</h3>
+          <p class="section-subtext">A collection of my bird photography.</p>
 
-          <p class="section-subtext">
-            A collection of my bird photography.
-          </p>
+          <div class="photo-gallery">
 
-          <div class="photo-gallery" id="photoGallery"></div>
+            <figure class="photo-card">
+              <a href="images/birding01.jpg" class="photo-link"
+                 data-description="Grey heron.">
+                <img src="images/birding01.jpg" alt="Grey heron" loading="lazy">
+              </a>
+              <figcaption class="photo-caption">Grey heron.</figcaption>
+            </figure>
+
+            <figure class="photo-card">
+              <a href="images/birding02.jpg" class="photo-link"
+                 data-description="Grey heron.">
+                <img src="images/birding02.jpg" alt="Grey heron" loading="lazy">
+              </a>
+              <figcaption class="photo-caption">Grey heron.</figcaption>
+            </figure>
+
+            <figure class="photo-card">
+              <a href="images/birding03.jpg" class="photo-link"
+                 data-description="Grey heron.">
+                <img src="images/birding03.jpg" alt="Grey heron" loading="lazy">
+              </a>
+              <figcaption class="photo-caption">Grey heron.</figcaption>
+            </figure>
+
+          </div>
         </section>
 
       </div>
     </div>
-  </main>
+  </div>
 
   <footer class="pt-4 pb-4 text-muted text-center d-print-none">
     <div class="container">
       <div class="my-3">
         <div class="h4">Matt Mirhosseini</div>
-
         <div class="footer-nav">
           <nav role="navigation">
             <ul class="nav justify-content-center">
-              <li class="nav-item">
-                <a class="nav-link" href="https://twitter.com/mattmirhosseini" title="Twitter">
-                  <i class="fab fa-twitter"></i>
-                  <span class="menu-title sr-only">Twitter</span>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook">
-                  <i class="fab fa-facebook"></i>
-                  <span class="menu-title sr-only">Facebook</span>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram">
-                  <i class="fab fa-instagram"></i>
-                  <span class="menu-title sr-only">Instagram</span>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="https://github.com/mattmirhosseini" title="Github">
-                  <i class="fab fa-github"></i>
-                  <span class="menu-title sr-only">Github</span>
-                </a>
-              </li>
+              <li class="nav-item"><a class="nav-link" href="https://twitter.com/mattmirhosseini" title="Twitter"><i class="fab fa-twitter"></i><span class="sr-only">Twitter</span></a></li>
+              <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook"><i class="fab fa-facebook"></i><span class="sr-only">Facebook</span></a></li>
+              <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram"><i class="fab fa-instagram"></i><span class="sr-only">Instagram</span></a></li>
+              <li class="nav-item"><a class="nav-link" href="https://github.com/mattmirhosseini" title="Github"><i class="fab fa-github"></i><span class="sr-only">Github</span></a></li>
             </ul>
           </nav>
         </div>
       </div>
-
       <div class="text-small">
         <div class="mb-1">&copy; All rights reserved.</div>
-        <div>
-          Design -
-          <a href="https://templateflip.com/" target="_blank" rel="noopener">TemplateFlip</a>
-        </div>
+        <div>Design - <a href="https://templateflip.com/" target="_blank" rel="noopener">TemplateFlip</a></div>
       </div>
     </div>
   </footer>
 
-  <!-- Full-screen photo viewer -->
+  <!-- Same lightbox structure as the other photography pages -->
   <div class="photo-lightbox" id="photoLightbox" aria-hidden="true">
-    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close viewer">&times;</button>
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close">&times;</button>
 
     <button class="lightbox-nav lightbox-prev" id="lightboxPrev" type="button" aria-label="Previous photo">&#10094;</button>
 
@@ -201,84 +151,22 @@
     <button class="lightbox-nav lightbox-next" id="lightboxNext" type="button" aria-label="Next photo">&#10095;</button>
   </div>
 
-  <!-- EXIF reader must load before the gallery script -->
   <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const photos = [
-        {
-          file: "images/birding01.jpg",
-          title: "Bird Photograph 1",
-          description: "Grey heron."
-        },
-        {
-          file: "images/birding02.jpg",
-          title: "Bird Photograph 2",
-          description: "Grey heron."
-        },
-        {
-          file: "images/birding03.jpg",
-          title: "Bird Photograph 3",
-          description: "Grey heron."
-        }
-      ];
-
-      const gallery = document.getElementById("photoGallery");
+      const links = Array.from(document.querySelectorAll(".photo-gallery .photo-link"));
       const viewer = document.getElementById("photoLightbox");
       const viewerImage = document.getElementById("lightboxImage");
       const title = document.getElementById("photoTitle");
       const description = document.getElementById("photoDescription");
       const details = document.getElementById("exifDetails");
 
-      const closeButton = document.getElementById("lightboxClose");
-      const previousButton = document.getElementById("lightboxPrev");
-      const nextButton = document.getElementById("lightboxNext");
-
       let currentIndex = 0;
       let requestId = 0;
 
-      // Generate the gallery from the photo list.
-      photos.forEach(function (photo, index) {
-        const figure = document.createElement("figure");
-        figure.className = "photo-card";
-
-        const link = document.createElement("a");
-        link.href = photo.file;
-        link.className = "photo-link";
-        link.dataset.index = index;
-        link.dataset.description = photo.description;
-        link.setAttribute("aria-label", "Open " + photo.title);
-
-        const img = document.createElement("img");
-        img.src = photo.file;
-        img.alt = photo.title;
-        img.loading = "lazy";
-        img.decoding = "async";
-
-        const caption = document.createElement("figcaption");
-        caption.className = "photo-caption";
-        caption.textContent = photo.description;
-
-        link.appendChild(img);
-        figure.appendChild(link);
-        figure.appendChild(caption);
-        gallery.appendChild(figure);
-      });
-
-      const links = Array.from(
-        gallery.querySelectorAll(".photo-link")
-      );
-
       function addRow(label, value) {
-        if (
-          value === undefined ||
-          value === null ||
-          value === "" ||
-          value === "undefined"
-        ) {
-          return;
-        }
+        if (value === undefined || value === null || value === "") return;
 
         const row = document.createElement("div");
         row.className = "exif-row";
@@ -289,12 +177,10 @@
         const valueElement = document.createElement("span");
 
         if (typeof value === "object" && value.numerator !== undefined) {
-          const denominator = value.denominator || 1;
-          valueElement.textContent = value.numerator / denominator;
-        } else if (typeof value === "object") {
-          valueElement.textContent = String(value);
+          valueElement.textContent =
+            value.numerator / (value.denominator || 1);
         } else {
-          valueElement.textContent = value;
+          valueElement.textContent = String(value);
         }
 
         row.appendChild(labelElement);
@@ -302,12 +188,10 @@
         details.appendChild(row);
       }
 
-      function formatRational(value) {
-        if (value && typeof value === "object" &&
-            value.numerator !== undefined) {
+      function rationalValue(value) {
+        if (value && typeof value === "object" && value.numerator !== undefined) {
           return value.numerator / (value.denominator || 1);
         }
-
         return value;
       }
 
@@ -315,11 +199,7 @@
         if (id !== requestId) return;
 
         details.replaceChildren();
-
-        addRow(
-          "Dimensions",
-          image.naturalWidth + " × " + image.naturalHeight + " px"
-        );
+        addRow("Dimensions", image.naturalWidth + " × " + image.naturalHeight + " px");
 
         if (typeof EXIF === "undefined") {
           addRow("Metadata", "EXIF reader unavailable");
@@ -338,26 +218,20 @@
             const iso = get("ISOSpeedRatings");
             addRow("ISO", Array.isArray(iso) ? iso.join(", ") : iso);
 
-            const aperture = formatRational(get("FNumber"));
-            if (aperture != null) {
-              addRow("Aperture", "f/" + aperture);
-            }
+            const aperture = rationalValue(get("FNumber"));
+            if (aperture != null) addRow("Aperture", "f/" + aperture);
 
-            const exposure = formatRational(get("ExposureTime"));
+            const exposure = rationalValue(get("ExposureTime"));
             if (exposure != null) {
               const seconds = Number(exposure);
-
               const shutter = seconds > 0 && seconds < 1
                 ? "1/" + Math.round(1 / seconds) + " s"
                 : seconds + " s";
-
               addRow("Shutter speed", shutter);
             }
 
-            const focal = formatRational(get("FocalLength"));
-            if (focal != null) {
-              addRow("Focal length", focal + " mm");
-            }
+            const focal = rationalValue(get("FocalLength"));
+            if (focal != null) addRow("Focal length", focal + " mm");
 
             addRow("Date taken", get("DateTimeOriginal"));
             addRow("Exposure compensation", get("ExposureBias"));
@@ -367,28 +241,27 @@
             }
           });
         } catch (error) {
-          if (id === requestId) {
-            addRow("Metadata", "Could not read EXIF data");
-          }
+          if (id === requestId) addRow("Metadata", "Could not read EXIF data");
         }
       }
 
       function openPhoto(index) {
-        currentIndex = (index + photos.length) % photos.length;
-
-        const photo = photos[currentIndex];
+        currentIndex = (index + links.length) % links.length;
+        const link = links[currentIndex];
+        const photoUrl = link.getAttribute("href");
+        const photoDescription = link.dataset.description || "";
         const id = ++requestId;
 
-        title.textContent = photo.title;
-        description.textContent = photo.description;
+        title.textContent = link.querySelector("img").alt || "Bird photograph";
+        description.textContent = photoDescription;
         details.replaceChildren();
 
         viewer.classList.add("is-open");
         viewer.setAttribute("aria-hidden", "false");
         document.body.style.overflow = "hidden";
 
-        viewerImage.alt = photo.title;
-        viewerImage.src = photo.file;
+        viewerImage.alt = title.textContent;
+        viewerImage.src = photoUrl;
 
         const metadataImage = new Image();
 
@@ -403,7 +276,7 @@
           addRow("Metadata", "Could not load image metadata");
         };
 
-        metadataImage.src = photo.file;
+        metadataImage.src = photoUrl;
       }
 
       function closePhoto() {
@@ -421,34 +294,28 @@
         });
       });
 
-      closeButton.addEventListener("click", closePhoto);
+      document.getElementById("lightboxClose").addEventListener("click", closePhoto);
 
-      previousButton.addEventListener("click", function (event) {
+      document.getElementById("lightboxPrev").addEventListener("click", function (event) {
         event.stopPropagation();
         openPhoto(currentIndex - 1);
       });
 
-      nextButton.addEventListener("click", function (event) {
+      document.getElementById("lightboxNext").addEventListener("click", function (event) {
         event.stopPropagation();
         openPhoto(currentIndex + 1);
       });
 
       viewer.addEventListener("click", function (event) {
-        if (event.target === viewer) {
-          closePhoto();
-        }
+        if (event.target === viewer) closePhoto();
       });
 
       document.addEventListener("keydown", function (event) {
         if (!viewer.classList.contains("is-open")) return;
 
-        if (event.key === "Escape") {
-          closePhoto();
-        } else if (event.key === "ArrowLeft") {
-          openPhoto(currentIndex - 1);
-        } else if (event.key === "ArrowRight") {
-          openPhoto(currentIndex + 1);
-        }
+        if (event.key === "Escape") closePhoto();
+        if (event.key === "ArrowLeft") openPhoto(currentIndex - 1);
+        if (event.key === "ArrowRight") openPhoto(currentIndex + 1);
       });
     });
   </script>
