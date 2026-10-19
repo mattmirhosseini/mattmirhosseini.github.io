@@ -1,4 +1,256 @@
 
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Matt - Tabriz Photography</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@300;400;500;700&display=swap">
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@300;400;500;700&display=swap"
+        media="print" onload="this.media='all'">
+
+  <noscript>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@300;400;500;700&display=swap">
+  </noscript>
+
+  <link href="css/font-awesome/css/all.min.css?ver=1.2.0" rel="stylesheet">
+  <link href="css/bootstrap.min.css?ver=1.2.0" rel="stylesheet">
+  <link href="css/aos.css?ver=1.2.0" rel="stylesheet">
+  <link href="css/main.css?ver=1.2.0" rel="stylesheet">
+  <link href="css/gallery.css?v=1" rel="stylesheet">
+
+  <style>
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background-color: #ddd;
+      margin: 40px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      font-size: 24px;
+      margin: 20px 0;
+      color: #333;
+    }
+
+    .section-subtext {
+      text-align: center;
+      font-size: 16px;
+      color: #777;
+      margin-bottom: 30px;
+    }
+
+    header .nav-link {
+      font-size: 14px;
+    }
+
+    [data-aos] {
+      /* Keep existing AOS animation behavior. */
+    }
+  </style>
+
+  <noscript>
+    <style>
+      [data-aos] {
+        opacity: 1 !important;
+        transform: translate(0) scale(1) !important;
+      }
+    </style>
+  </noscript>
+</head>
+
+<body id="top">
+
+  <header class="d-print-none">
+    <div class="container text-center text-lg-left">
+      <div class="py-3 clearfix">
+        <h1 class="site-title mb-0">Matt Mirhosseini</h1>
+
+        <div class="site-nav">
+          <nav role="navigation">
+            <ul class="nav justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="MyArt.html">My Photography</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Shiraz.html">Shiraz</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Isfahan.html">Isfahan</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Tabriz.html">Tabriz</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link"
+                   href="https://twitter.com/mattmirhosseini"
+                   title="Twitter">
+                  <i class="fab fa-twitter"></i>
+                  <span class="sr-only">Twitter</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link"
+                   href="https://www.facebook.com/profile.php?id=61568136706109"
+                   title="Facebook">
+                  <i class="fab fa-facebook"></i>
+                  <span class="sr-only">Facebook</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link"
+                   href="https://www.instagram.com/mhmdmirhosseini"
+                   title="Instagram">
+                  <i class="fab fa-instagram"></i>
+                  <span class="sr-only">Instagram</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link"
+                   href="https://github.com/mattmirhosseini"
+                   title="Github">
+                  <i class="fab fa-github"></i>
+                  <span class="sr-only">Github</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="container">
+      <div class="cover shadow-lg bg-white">
+
+        <div class="section-divider"></div>
+
+        <section class="gallery-section px-3 px-lg-4 pb-4">
+          <h3 class="section-header">My Tabriz Trip</h3>
+
+          <p class="section-subtext">
+            A collection of photographs from my trip to Tabriz, Iran.
+          </p>
+
+          <div class="photo-gallery" id="photoGallery">
+            <!-- Gallery cards are generated below. -->
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="pt-4 pb-4 text-muted text-center d-print-none">
+    <div class="container">
+      <div class="my-3">
+        <div class="h4">Matt Mirhosseini</div>
+
+        <div class="footer-nav">
+          <nav role="navigation">
+            <ul class="nav justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link"
+                   href="https://twitter.com/mattmirhosseini"
+                   title="Twitter">
+                  <i class="fab fa-twitter"></i>
+                  <span class="sr-only">Twitter</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link"
+                   href="https://www.facebook.com/profile.php?id=61568136706109"
+                   title="Facebook">
+                  <i class="fab fa-facebook"></i>
+                  <span class="sr-only">Facebook</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link"
+                   href="https://www.instagram.com/mhmdmirhosseini"
+                   title="Instagram">
+                  <i class="fab fa-instagram"></i>
+                  <span class="sr-only">Instagram</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link"
+                   href="https://github.com/mattmirhosseini"
+                   title="Github">
+                  <i class="fab fa-github"></i>
+                  <span class="sr-only">Github</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="text-small">
+        <div class="mb-1">&copy; All rights reserved.</div>
+        <div>
+          Design -
+          <a href="https://templateflip.com/"
+             target="_blank" rel="noopener">TemplateFlip</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Full-screen photo viewer -->
+  <div class="photo-lightbox" id="photoLightbox" aria-hidden="true">
+
+    <button class="lightbox-close" id="lightboxClose"
+            aria-label="Close viewer">&times;</button>
+
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev"
+            aria-label="Previous photo">&#10094;</button>
+
+    <div class="lightbox-content">
+      <div class="lightbox-image-wrap">
+        <img id="lightboxImage" src="" alt="">
+      </div>
+
+      <aside class="photo-info">
+        <h3 id="photoTitle">Photograph</h3>
+        <p id="photoDescription"></p>
+
+        <h4>Camera information</h4>
+        <dl id="exifDetails"></dl>
+      </aside>
+    </div>
+
+    <button class="lightbox-nav lightbox-next" id="lightboxNext"
+            aria-label="Next photo">&#10095;</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      // All image filenames from the original Tabriz page.
+      // Each image has its own editable description.
+
 const photos = [
   { file: "Tabriz1.jpg",  description: "Description for Tabriz photograph 1." },
   { file: "Tabriz2.jpg",  description: "Description for Tabriz photograph 2." },
@@ -28,3 +280,230 @@ const photos = [
   { file: "Tabriz26.jpg", description: "Description for Tabriz photograph 26." },
   { file: "Tabriz27.jpg", description: "Description for Tabriz photograph 27." }
 ];
+
+
+      const gallery = document.getElementById("photoGallery");
+
+      // Generate the gallery from the photo list.
+      photos.forEach(function (photo, index) {
+        const figure = document.createElement("figure");
+        figure.className = "photo-card";
+
+        const link = document.createElement("a");
+        link.href = "images/" + photo.file;
+        link.className = "photo-link";
+        link.dataset.description = photo.description;
+
+        const img = document.createElement("img");
+        img.src = "images/" + photo.file;
+        img.alt = "Tabriz photograph " + (index + 1);
+        img.loading = "lazy";
+
+        const caption = document.createElement("figcaption");
+        caption.className = "photo-caption";
+        caption.textContent = photo.description;
+
+        link.appendChild(img);
+        figure.append(link, caption);
+        gallery.appendChild(figure);
+      });
+
+      const links = Array.from(
+        document.querySelectorAll(".photo-gallery .photo-link")
+      );
+
+      const viewer = document.getElementById("photoLightbox");
+      const viewerImage = document.getElementById("lightboxImage");
+      const title = document.getElementById("photoTitle");
+      const description = document.getElementById("photoDescription");
+      const details = document.getElementById("exifDetails");
+
+      let currentIndex = 0;
+      let requestId = 0;
+
+      function addRow(label, value) {
+        if (value === undefined || value === null || value === "") return;
+
+        const row = document.createElement("div");
+        const dt = document.createElement("dt");
+        const dd = document.createElement("dd");
+
+        dt.textContent = label;
+        dd.textContent = String(value);
+
+        row.append(dt, dd);
+        details.appendChild(row);
+      }
+
+      function renderExif(image, id) {
+        if (id !== requestId) return;
+
+        details.replaceChildren();
+
+        addRow(
+          "Dimensions",
+          image.naturalWidth + " × " + image.naturalHeight + " px"
+        );
+
+        if (typeof EXIF === "undefined") {
+          addRow("Metadata", "EXIF reader unavailable");
+          return;
+        }
+
+        try {
+          EXIF.getData(image, function () {
+            if (id !== requestId) return;
+
+            const get = tag => EXIF.getTag(this, tag);
+
+            addRow("Camera", get("Model"));
+            addRow("Lens", get("LensModel"));
+
+            const iso = get("ISOSpeedRatings");
+            addRow("ISO", Array.isArray(iso) ? iso.join(", ") : iso);
+
+            const aperture = get("FNumber");
+            if (aperture != null) {
+              addRow("Aperture", "f/" + aperture);
+            }
+
+            const exposure = get("ExposureTime");
+            if (exposure != null) {
+              const seconds = Number(exposure);
+              const shutter =
+                seconds > 0 && seconds < 1
+                  ? "1/" + Math.round(1 / seconds) + " s"
+                  : seconds + " s";
+
+              addRow("Shutter speed", shutter);
+            }
+
+            const focal = get("FocalLength");
+            if (focal != null) {
+              addRow("Focal length", focal + " mm");
+            }
+
+            addRow("Date taken", get("DateTimeOriginal"));
+            addRow("Exposure compensation", get("ExposureBias"));
+
+            if (details.children.length === 1) {
+              addRow("Metadata", "No EXIF camera data found");
+            }
+          });
+        } catch (error) {
+          if (id === requestId) {
+            addRow("Metadata", "Could not read EXIF data");
+          }
+        }
+      }
+
+      function openPhoto(index) {
+        if (!links.length) return;
+
+        currentIndex = (index + links.length) % links.length;
+
+        const link = links[currentIndex];
+        const thumbnail = link.querySelector("img");
+        const id = ++requestId;
+        const photoUrl = link.href;
+
+        title.textContent = thumbnail.alt || "Photograph";
+        description.textContent = link.dataset.description || "";
+
+        details.replaceChildren();
+        addRow("Metadata", "Loading camera information…");
+
+        viewer.classList.add("open");
+        viewer.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+
+        viewerImage.onload = function () {
+          if (id !== requestId) return;
+
+          viewerImage.alt = thumbnail.alt || "Photograph";
+
+          details.replaceChildren();
+          addRow(
+            "Dimensions",
+            viewerImage.naturalWidth + " × " +
+              viewerImage.naturalHeight + " px"
+          );
+        };
+
+        viewerImage.onerror = function () {
+          if (id !== requestId) return;
+
+          details.replaceChildren();
+          addRow("Metadata", "Could not load this photograph.");
+        };
+
+        viewerImage.src = photoUrl;
+        viewerImage.alt = thumbnail.alt || "Photograph";
+
+        // Load a separate image for EXIF reading.
+        // The request ID prevents older results replacing newer ones.
+        const metadataImage = new Image();
+
+        metadataImage.onload = function () {
+          if (id !== requestId) return;
+          renderExif(metadataImage, id);
+        };
+
+        metadataImage.onerror = function () {
+          if (id !== requestId) return;
+
+          details.replaceChildren();
+          addRow("Metadata", "Could not read this image.");
+        };
+
+        metadataImage.src = photoUrl;
+      }
+
+      function closePhoto() {
+        requestId++;
+        viewer.classList.remove("open");
+        viewer.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      links.forEach(function (link, index) {
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
+          openPhoto(index);
+        });
+      });
+
+      document.getElementById("lightboxClose")
+        .addEventListener("click", closePhoto);
+
+      document.getElementById("lightboxPrev")
+        .addEventListener("click", function () {
+          openPhoto(currentIndex - 1);
+        });
+
+      document.getElementById("lightboxNext")
+        .addEventListener("click", function () {
+          openPhoto(currentIndex + 1);
+        });
+
+      viewer.addEventListener("click", function (event) {
+        if (event.target === viewer) closePhoto();
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (!viewer.classList.contains("open")) return;
+
+        if (event.key === "Escape") closePhoto();
+        if (event.key === "ArrowLeft") openPhoto(currentIndex - 1);
+        if (event.key === "ArrowRight") openPhoto(currentIndex + 1);
+      });
+
+    });
+  </script>
+
+  <script src="scripts/bootstrap.bundle.min.js?ver=1.2.0"></script>
+  <script src="scripts/aos.js?ver=1.2.0"></script>
+  <script src="scripts/main.js?ver=1.2.0"></script>
+
+</body>
+</html>
