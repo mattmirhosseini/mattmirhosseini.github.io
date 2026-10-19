@@ -1,0 +1,267 @@
+/* =========================================================
+   Photography gallery and lightbox
+   File: css/gallery.css
+   ========================================================= */
+
+/* Masonry-style gallery */
+.photo-gallery {
+  columns: 3 280px;
+  column-gap: 16px;
+  width: 100%;
+}
+
+.photo-card {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 16px;
+  break-inside: avoid;
+  vertical-align: top;
+}
+
+.photo-card a {
+  display: block;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #f0f0f0;
+}
+
+.photo-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.photo-card img:hover {
+  transform: scale(1.025);
+}
+
+.photo-caption {
+  padding: 8px 2px 4px;
+  color: #666;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Desktop spacing */
+@media (min-width: 1200px) {
+  .photo-gallery {
+    columns: 3;
+    column-gap: 20px;
+  }
+
+  .photo-card {
+    margin-bottom: 20px;
+  }
+}
+
+/* Two columns on smaller screens */
+@media (max-width: 767px) {
+  .photo-gallery {
+    columns: 2;
+    column-gap: 10px;
+  }
+
+  .photo-card {
+    margin-bottom: 10px;
+  }
+}
+
+/* One column on very narrow screens */
+@media (max-width: 380px) {
+  .photo-gallery {
+    columns: 1;
+  }
+}
+
+/* Full-screen photo viewer */
+.photo-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(12, 12, 14, 0.97);
+  color: #f5f5f5;
+  align-items: center;
+  justify-content: center;
+  padding: 55px 60px 30px;
+  box-sizing: border-box;
+}
+
+.photo-lightbox.open {
+  display: flex;
+}
+
+.lightbox-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  width: 100%;
+  height: 100%;
+  max-width: 1500px;
+  min-height: 0;
+}
+
+.lightbox-image-wrap {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#lightboxImage {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 3px;
+}
+
+.photo-info {
+  flex: 0 0 250px;
+  max-height: 100%;
+  overflow-y: auto;
+  font-family: Arial, sans-serif;
+}
+
+.photo-info h3 {
+  font-size: 19px;
+  color: #fff;
+  margin: 0 0 10px;
+}
+
+.photo-info h4 {
+  font-size: 14px;
+  margin: 25px 0 12px;
+  color: #ddd;
+}
+
+#photoDescription {
+  font-size: 13px;
+  color: #bbb;
+  line-height: 1.6;
+}
+
+#exifDetails {
+  margin: 0;
+  font-size: 12px;
+}
+
+#exifDetails div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid #333;
+}
+
+#exifDetails dt {
+  color: #aaa;
+  font-weight: normal;
+}
+
+#exifDetails dd {
+  margin: 0;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.lightbox-close,
+.lightbox-nav {
+  position: absolute;
+  border: 0;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  z-index: 2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-close {
+  top: 12px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.lightbox-nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+}
+
+.lightbox-prev {
+  left: 12px;
+}
+
+.lightbox-next {
+  right: 12px;
+}
+
+.lightbox-close:hover,
+.lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.lightbox-close:focus-visible,
+.lightbox-nav:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* Mobile viewer */
+@media (max-width: 700px) {
+  .photo-lightbox {
+    padding: 55px 15px 15px;
+    overflow-y: auto;
+    align-items: flex-start;
+  }
+
+  .lightbox-content {
+    flex-direction: column;
+    height: auto;
+    gap: 18px;
+  }
+
+  .lightbox-image-wrap {
+    flex: none;
+    width: 100%;
+    height: 55vh;
+  }
+
+  #lightboxImage {
+    max-width: 100%;
+    max-height: 55vh;
+  }
+
+  .photo-info {
+    flex: none;
+    width: 100%;
+    max-height: none;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+  }
+
+  .lightbox-prev {
+    left: 5px;
+  }
+
+  .lightbox-next {
+    right: 5px;
+  }
+}
