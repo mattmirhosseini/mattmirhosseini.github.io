@@ -1,204 +1,461 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My BIRDING collection</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media='all'"/>
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"/>
-    </noscript>
-    <link href="css/font-awesome/css/all.min.css?ver=1.2.0" rel="stylesheet">
-    <link href="css/bootstrap.min.css?ver=1.2.0" rel="stylesheet">
-    <link href="css/aos.css?ver=1.2.0" rel="stylesheet">
-    <link href="css/main.css?ver=1.2.0" rel="stylesheet">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>My Birding Collection</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media='all'">
+
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap">
+  </noscript>
+
+  <link href="css/font-awesome/css/all.min.css?ver=1.2.0" rel="stylesheet">
+  <link href="css/bootstrap.min.css?ver=1.2.0" rel="stylesheet">
+  <link href="css/aos.css?ver=1.2.0" rel="stylesheet">
+  <link href="css/main.css?ver=1.2.0" rel="stylesheet">
+  <link href="css/gallery.css?v=1" rel="stylesheet">
+
+  <style>
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background-color: #ddd;
+      margin: 40px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      font-size: 24px;
+      margin: 20px 0;
+      color: #333;
+    }
+
+    .section-subtext {
+      text-align: center;
+      font-size: 16px;
+      color: #777;
+      margin-bottom: 30px;
+    }
+
+    header .nav-link {
+      font-size: 14px;
+    }
+  </style>
+
+  <noscript>
     <style>
-      /* General styles */
-      .gallery-section img {
-        cursor: pointer;
-        transition: transform 0.3s ease;
-        border-radius: 8px; /* Rounded corners for images */
-      }
-      .gallery-section img:hover {
-        transform: scale(1.05);
-      }
-      .image-description {
-        margin-top: 10px;
-        font-size: 14px;
-        color: #555;
-        text-align: center;
-        padding: 0 10px;
-      }
-      .lightbox-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-        cursor: pointer;
-      }
-      .lightbox-image {
-        max-width: 90%;
-        max-height: 90%;
-        object-fit: contain;
-        border-radius: 8px; /* Rounded corners for lightbox image */
-      }
-      .gallery-item {
-        margin-bottom: 20px; /* Space between gallery items */
-      }
-      .section-divider {
-        width: 100%;
-        height: 1px;
-        background-color: #ddd;
-        margin: 40px 0;
-      }
-      .section-header {
-        text-align: center;
-        font-size: 24px;
-        margin: 20px 0 ; /* Added more margin-top to bring it down */
-        color: #333;
-      }
-      .section-subtext {
-        text-align: center;
-        font-size: 16px;
-        color: #777;
-        margin-bottom: 30px;
-      }
-      /* Smaller text for Home and New Page buttons */
-      header .nav-link {
-        font-size: 14px; /* Adjust this value to make the text smaller */
+      [data-aos] {
+        opacity: 1 !important;
+        transform: translate(0) scale(1) !important;
       }
     </style>
-    <noscript>
-      <style type="text/css">
-        [data-aos] {
-            opacity: 1 !important;
-            transform: translate(0) scale(1) !important;
+  </noscript>
+</head>
+
+<body id="top">
+
+  <header class="d-print-none">
+    <div class="container text-center text-lg-left">
+      <div class="py-3 clearfix">
+        <h1 class="site-title mb-0">Matt Mirhosseini</h1>
+
+        <div class="site-nav">
+          <nav role="navigation">
+            <ul class="nav justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="MyArt.html">My Photography</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="https://twitter.com/matmirhosseini" title="Twitter">
+                  <i class="fab fa-twitter"></i>
+                  <span class="menu-title sr-only">Twitter</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook">
+                  <i class="fab fa-facebook"></i>
+                  <span class="menu-title sr-only">Facebook</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram">
+                  <i class="fab fa-instagram"></i>
+                  <span class="menu-title sr-only">Instagram</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="https://github.com/mattmirhosseini" title="Github">
+                  <i class="fab fa-github"></i>
+                  <span class="menu-title sr-only">Github</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="container">
+      <div class="cover shadow-lg bg-white">
+
+        <div class="section-divider"></div>
+
+        <section class="gallery-section px-3 px-lg-4 pb-4">
+          <h3 class="section-header">My Birding Photo Collection</h3>
+
+          <p class="section-subtext">
+            A collection of my bird photography.
+          </p>
+
+          <div class="photo-gallery" id="photoGallery"></div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="pt-4 pb-4 text-muted text-center d-print-none">
+    <div class="container">
+      <div class="my-3">
+        <div class="h4">Matt Mirhosseini</div>
+
+        <div class="footer-nav">
+          <nav role="navigation">
+            <ul class="nav justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link" href="https://twitter.com/mattmirhosseini" title="Twitter">
+                  <i class="fab fa-twitter"></i>
+                  <span class="menu-title sr-only">Twitter</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook">
+                  <i class="fab fa-facebook"></i>
+                  <span class="menu-title sr-only">Facebook</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram">
+                  <i class="fab fa-instagram"></i>
+                  <span class="menu-title sr-only">Instagram</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="https://github.com/mattmirhosseini" title="Github">
+                  <i class="fab fa-github"></i>
+                  <span class="menu-title sr-only">Github</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="text-small">
+        <div class="mb-1">&copy; All rights reserved.</div>
+        <div>
+          Design -
+          <a href="https://templateflip.com/" target="_blank" rel="noopener">TemplateFlip</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Full-screen photo viewer -->
+  <div class="photo-lightbox" id="photoLightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close viewer">&times;</button>
+
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" type="button" aria-label="Previous photo">&#10094;</button>
+
+    <div class="lightbox-content">
+      <div class="lightbox-image-wrap">
+        <img id="lightboxImage" src="" alt="">
+      </div>
+
+      <div class="photo-info">
+        <h3 id="photoTitle"></h3>
+        <p id="photoDescription"></p>
+        <div id="exifDetails"></div>
+      </div>
+    </div>
+
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" type="button" aria-label="Next photo">&#10095;</button>
+  </div>
+
+  <!-- EXIF reader must load before the gallery script -->
+  <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const photos = [
+        {
+          file: "images/birding01.jpg",
+          title: "Bird Photograph 1",
+          description: "Grey heron."
+        },
+        {
+          file: "images/birding02.jpg",
+          title: "Bird Photograph 2",
+          description: "Grey heron."
+        },
+        {
+          file: "images/birding03.jpg",
+          title: "Bird Photograph 3",
+          description: "Grey heron."
         }
-      </style>
-    </noscript>
-  </head>
-  <body id="top">
-    <header class="d-print-none">
-      <div class="container text-center text-lg-left">
-        <div class="py-3 clearfix">
-          <h1 class="site-title mb-0">Matt Mirhosseini</h1>
-          <div class="site-nav">
-            <nav role="navigation">
-              <ul class="nav justify-content-center">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="MyArt.html">My Photography</a></li>
-                <li class="nav-item"><a class="nav-link" href="https://twitter.com/matmirhosseini" title="Twitter"><i class="fab fa-twitter"></i><span class="menu-title sr-only">Twitter</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook"><i class="fab fa-facebook"></i><span class="menu-title sr-only">Facebook</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram"><i class="fab fa-instagram"></i><span class="menu-title sr-only">Instagram</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="https://github.com/mattmirhosseini" title="Github"><i class="fab fa-github"></i><span class="menu-title sr-only">Github</span></a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </header>
-    
-    <div class="page-content">
-      <div class="container">
-        <div class="cover shadow-lg bg-white">
+      ];
 
-            
-            <!-- Section Divider and Header -->
-            <div class="section-divider"></div>
-            <div class="gallery-section px-3 px-lg-4 pb-4">
-            <h3 class="section-header">My Birding photo collection</h3>
-            <p class="section-subtext">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <div class="row">
-            <!-- Bird1 -->
-              <div class="col-md-4 col-sm-6 mb-3 gallery-item">
-                <a href="images/birding01.jpg" class="image-link">
-                  <img src="images/birding01.jpg" class="img-fluid" alt="Image 1">
-                </a>
-                <div class="image-description">
-                  Grey heron.
-                </div>
-              </div>
-            <!-- Bird2 -->
-              <div class="col-md-4 col-sm-6 mb-3 gallery-item">
-                <a href="images/birding02.jpg" class="image-link">
-                  <img src="images/birding02.jpg" class="img-fluid" alt="Image 2">
-                </a>
-                <div class="image-description">
-                  Grey heron.
-                </div>
-              </div>
-            <!-- Bird3 -->
-              <div class="col-md-4 col-sm-6 mb-3 gallery-item">
-                <a href="images/birding03.jpg" class="image-link">
-                  <img src="images/birding03.jpg" class="img-fluid" alt="Image 3">
-                </a>
-                <div class="image-description">
-                  Grey heron.
-                </div>
-              </div>
-            </div>
+      const gallery = document.getElementById("photoGallery");
+      const viewer = document.getElementById("photoLightbox");
+      const viewerImage = document.getElementById("lightboxImage");
+      const title = document.getElementById("photoTitle");
+      const description = document.getElementById("photoDescription");
+      const details = document.getElementById("exifDetails");
 
-            </div>
-            </div>
-          </div> 
-        </div>
-      </div>
-    </div>
-    
-    <footer class="pt-4 pb-4 text-muted text-center d-print-none">
-      <div class="container">
-        <div class="my-3">
-          <div class="h4">Matt Mirhosseini</div>
-          <div class="footer-nav">
-            <nav role="navigation">
-              <ul class="nav justify-content-center">
-                <li class="nav-item"><a class="nav-link" href="https://twitter.com/mattmirhosseini" title="Twitter"><i class="fab fa-twitter"></i><span class="menu-title sr-only">Twitter</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook"><i class="fab fa-facebook"></i><span class="menu-title sr-only">Facebook</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram"><i class="fab fa-instagram"></i><span class="menu-title sr-only">Instagram</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="https://github.com/mattmirhosseini" title="Github"><i class="fab fa-github"></i><span class="menu-title sr-only">Github</span></a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <div class="text-small">
-          <div class="mb-1">&copy; All rights reserved.</div>
-          <div>Design - <a href="https://templateflip.com/" target="_blank">TemplateFlip</a></div>
-        </div>
-      </div>
-    </footer>
-    
-    <div class="lightbox-overlay">
-      <img src="" class="lightbox-image" alt="Enlarged view">
-    </div>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const images = document.querySelectorAll(".gallery-section img");
-        const overlay = document.querySelector(".lightbox-overlay");
-        
-        images.forEach(img => {
-          img.addEventListener("click", function (e) {
-            e.preventDefault();
-            overlay.innerHTML = `<img src="${this.src}" class="lightbox-image">`;
-            overlay.style.display = "flex";
+      const closeButton = document.getElementById("lightboxClose");
+      const previousButton = document.getElementById("lightboxPrev");
+      const nextButton = document.getElementById("lightboxNext");
+
+      let currentIndex = 0;
+      let requestId = 0;
+
+      // Generate the gallery from the photo list.
+      photos.forEach(function (photo, index) {
+        const figure = document.createElement("figure");
+        figure.className = "photo-card";
+
+        const link = document.createElement("a");
+        link.href = photo.file;
+        link.className = "photo-link";
+        link.dataset.index = index;
+        link.dataset.description = photo.description;
+        link.setAttribute("aria-label", "Open " + photo.title);
+
+        const img = document.createElement("img");
+        img.src = photo.file;
+        img.alt = photo.title;
+        img.loading = "lazy";
+        img.decoding = "async";
+
+        const caption = document.createElement("figcaption");
+        caption.className = "photo-caption";
+        caption.textContent = photo.description;
+
+        link.appendChild(img);
+        figure.appendChild(link);
+        figure.appendChild(caption);
+        gallery.appendChild(figure);
+      });
+
+      const links = Array.from(
+        gallery.querySelectorAll(".photo-link")
+      );
+
+      function addRow(label, value) {
+        if (
+          value === undefined ||
+          value === null ||
+          value === "" ||
+          value === "undefined"
+        ) {
+          return;
+        }
+
+        const row = document.createElement("div");
+        row.className = "exif-row";
+
+        const labelElement = document.createElement("strong");
+        labelElement.textContent = label + ": ";
+
+        const valueElement = document.createElement("span");
+
+        if (typeof value === "object" && value.numerator !== undefined) {
+          const denominator = value.denominator || 1;
+          valueElement.textContent = value.numerator / denominator;
+        } else if (typeof value === "object") {
+          valueElement.textContent = String(value);
+        } else {
+          valueElement.textContent = value;
+        }
+
+        row.appendChild(labelElement);
+        row.appendChild(valueElement);
+        details.appendChild(row);
+      }
+
+      function formatRational(value) {
+        if (value && typeof value === "object" &&
+            value.numerator !== undefined) {
+          return value.numerator / (value.denominator || 1);
+        }
+
+        return value;
+      }
+
+      function renderExif(image, id) {
+        if (id !== requestId) return;
+
+        details.replaceChildren();
+
+        addRow(
+          "Dimensions",
+          image.naturalWidth + " × " + image.naturalHeight + " px"
+        );
+
+        if (typeof EXIF === "undefined") {
+          addRow("Metadata", "EXIF reader unavailable");
+          return;
+        }
+
+        try {
+          EXIF.getData(image, function () {
+            if (id !== requestId) return;
+
+            const get = tag => EXIF.getTag(this, tag);
+
+            addRow("Camera", get("Model"));
+            addRow("Lens", get("LensModel"));
+
+            const iso = get("ISOSpeedRatings");
+            addRow("ISO", Array.isArray(iso) ? iso.join(", ") : iso);
+
+            const aperture = formatRational(get("FNumber"));
+            if (aperture != null) {
+              addRow("Aperture", "f/" + aperture);
+            }
+
+            const exposure = formatRational(get("ExposureTime"));
+            if (exposure != null) {
+              const seconds = Number(exposure);
+
+              const shutter = seconds > 0 && seconds < 1
+                ? "1/" + Math.round(1 / seconds) + " s"
+                : seconds + " s";
+
+              addRow("Shutter speed", shutter);
+            }
+
+            const focal = formatRational(get("FocalLength"));
+            if (focal != null) {
+              addRow("Focal length", focal + " mm");
+            }
+
+            addRow("Date taken", get("DateTimeOriginal"));
+            addRow("Exposure compensation", get("ExposureBias"));
+
+            if (details.children.length === 1) {
+              addRow("Metadata", "No EXIF camera data found");
+            }
           });
-        });
+        } catch (error) {
+          if (id === requestId) {
+            addRow("Metadata", "Could not read EXIF data");
+          }
+        }
+      }
 
-        overlay.addEventListener("click", function () {
-          this.style.display = "none";
+      function openPhoto(index) {
+        currentIndex = (index + photos.length) % photos.length;
+
+        const photo = photos[currentIndex];
+        const id = ++requestId;
+
+        title.textContent = photo.title;
+        description.textContent = photo.description;
+        details.replaceChildren();
+
+        viewer.classList.add("is-open");
+        viewer.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+
+        viewerImage.alt = photo.title;
+        viewerImage.src = photo.file;
+
+        const metadataImage = new Image();
+
+        metadataImage.onload = function () {
+          if (id !== requestId) return;
+          renderExif(metadataImage, id);
+        };
+
+        metadataImage.onerror = function () {
+          if (id !== requestId) return;
+          details.replaceChildren();
+          addRow("Metadata", "Could not load image metadata");
+        };
+
+        metadataImage.src = photo.file;
+      }
+
+      function closePhoto() {
+        requestId++;
+        viewer.classList.remove("is-open");
+        viewer.setAttribute("aria-hidden", "true");
+        viewerImage.src = "";
+        document.body.style.overflow = "";
+      }
+
+      links.forEach(function (link, index) {
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
+          openPhoto(index);
         });
       });
-    </script>
-    <script src="scripts/bootstrap.bundle.min.js?ver=1.2.0"></script>
-    <script src="scripts/aos.js?ver=1.2.0"></script>
-    <script src="scripts/main.js?ver=1.2.0"></script>
-  </body>
+
+      closeButton.addEventListener("click", closePhoto);
+
+      previousButton.addEventListener("click", function (event) {
+        event.stopPropagation();
+        openPhoto(currentIndex - 1);
+      });
+
+      nextButton.addEventListener("click", function (event) {
+        event.stopPropagation();
+        openPhoto(currentIndex + 1);
+      });
+
+      viewer.addEventListener("click", function (event) {
+        if (event.target === viewer) {
+          closePhoto();
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (!viewer.classList.contains("is-open")) return;
+
+        if (event.key === "Escape") {
+          closePhoto();
+        } else if (event.key === "ArrowLeft") {
+          openPhoto(currentIndex - 1);
+        } else if (event.key === "ArrowRight") {
+          openPhoto(currentIndex + 1);
+        }
+      });
+    });
+  </script>
+
+  <script src="scripts/bootstrap.bundle.min.js?ver=1.2.0"></script>
+  <script src="scripts/aos.js?ver=1.2.0"></script>
+  <script src="scripts/main.js?ver=1.2.0"></script>
+
+</body>
 </html>
