@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Birding Gallery</title>
+
+  <title>My Birding Collection Pg.1</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,16 +51,21 @@
       font-size: 14px;
     }
 
+    /* Masonry gallery: photos fit into columns without fixed row heights */
     .photo-gallery {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 20px;
-      align-items: start;
+      column-count: 3;
+      column-gap: 20px;
+      width: 100%;
     }
 
     .photo-card {
-      margin: 0;
-      min-width: 0;
+      display: inline-block;
+      width: 100%;
+      margin: 0 0 20px;
+      padding: 0;
+      break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
     }
 
     .photo-card[hidden] {
@@ -68,6 +74,7 @@
 
     .photo-link {
       display: block;
+      width: 100%;
       overflow: hidden;
       cursor: zoom-in;
       background: #eee;
@@ -95,6 +102,7 @@
       color: #555;
     }
 
+    /* Pagination */
     .album-pagination {
       display: flex;
       flex-wrap: wrap;
@@ -290,10 +298,15 @@
       background: #555;
     }
 
+    /* Tablets */
     @media (max-width: 800px) {
       .photo-gallery {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
+        column-count: 2;
+        column-gap: 16px;
+      }
+
+      .photo-card {
+        margin-bottom: 16px;
       }
 
       #photoLightbox.photo-lightbox {
@@ -334,10 +347,15 @@
       }
     }
 
+    /* Mobile phones */
     @media (max-width: 480px) {
       .photo-gallery {
-        grid-template-columns: 1fr;
-        gap: 12px;
+        column-count: 1;
+        column-gap: 12px;
+      }
+
+      .photo-card {
+        margin-bottom: 12px;
       }
 
       .section-header {
@@ -378,22 +396,26 @@
           <ul class="nav justify-content-center">
             <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="MyArt.html">My Photography</a></li>
-            <li class="nav-item"><a class="nav-link" href="nature.html">My Nature and Wildlife Gallery</a></li>
+            <li class="nav-item"><a class="nav-link" href="birding02.html">Birding Pg.2</a></li>
+
             <li class="nav-item">
               <a class="nav-link" href="https://twitter.com/matmirhosseini" title="Twitter">
                 <i class="fab fa-twitter"></i><span class="sr-only">Twitter</span>
               </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook">
                 <i class="fab fa-facebook"></i><span class="sr-only">Facebook</span>
               </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram">
                 <i class="fab fa-instagram"></i><span class="sr-only">Instagram</span>
               </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="https://github.com/mattmirhosseini" title="GitHub">
                 <i class="fab fa-github"></i><span class="sr-only">GitHub</span>
@@ -631,6 +653,7 @@
   <div class="container">
     <div class="my-3">
       <div class="h4">Matt Mirhosseini</div>
+
       <div class="footer-nav">
         <nav role="navigation">
           <ul class="nav justify-content-center">
@@ -639,16 +662,19 @@
                 <i class="fab fa-twitter"></i><span class="sr-only">Twitter</span>
               </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook">
                 <i class="fab fa-facebook"></i><span class="sr-only">Facebook</span>
               </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram">
                 <i class="fab fa-instagram"></i><span class="sr-only">Instagram</span>
               </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="https://github.com/mattmirhosseini" title="GitHub">
                 <i class="fab fa-github"></i><span class="sr-only">GitHub</span>
@@ -718,8 +744,9 @@
     currentPage = page;
 
     cards.forEach(function (card, index) {
-      card.hidden = index < (page - 1) * photosPerPage ||
-                    index >= page * photosPerPage;
+      card.hidden =
+        index < (page - 1) * photosPerPage ||
+        index >= page * photosPerPage;
     });
 
     pageNumbers.replaceChildren();
@@ -796,6 +823,7 @@
     if (value && typeof value === "object" && value.numerator !== undefined) {
       return value.numerator / (value.denominator || 1);
     }
+
     return value;
   }
 
