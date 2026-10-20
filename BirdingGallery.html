@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>My Birding Collection | Matt Mirhosseini</title>
+  <title>My Birding Gallery</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,25 +68,25 @@
       display: none !important;
     }
 
-    .photo-link {
+    .lightbox-trigger {
       display: block;
       overflow: hidden;
       cursor: zoom-in;
       background: #eee;
     }
 
-    .photo-link img {
+    .lightbox-trigger img {
       display: block;
       width: 100%;
       height: auto;
       transition: transform .25s ease;
     }
 
-    .photo-link:hover img {
+    .lightbox-trigger:hover img {
       transform: scale(1.025);
     }
 
-    .photo-caption {
+    .photo-card figcaption {
       padding: 10px 2px 14px;
       margin: 0;
       font-family: "Roboto", sans-serif;
@@ -281,6 +281,13 @@
       background: #555;
     }
 
+    .lightbox-close:focus-visible,
+    .lightbox-nav:focus-visible,
+    .gallery-pagination button:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+    }
+
     @media (max-width: 800px) {
       .photo-gallery {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -373,7 +380,6 @@
   <header class="d-print-none">
     <div class="container text-center text-lg-left">
       <div class="py-3 clearfix">
-
         <h1 class="site-title mb-0">Matt Mirhosseini</h1>
 
         <div class="site-nav">
@@ -388,40 +394,32 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="birding02.html">Birding Pg.2</a>
+                <a class="nav-link" href="nature.html">My Nature &amp; Wildlife Gallery</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link"
-                   href="https://twitter.com/matmirhosseini"
-                   title="Twitter">
+                <a class="nav-link" href="https://twitter.com/matmirhosseini" title="Twitter">
                   <i class="fab fa-twitter"></i>
                   <span class="sr-only">Twitter</span>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link"
-                   href="https://www.facebook.com/profile.php?id=61568136706109"
-                   title="Facebook">
+                <a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook">
                   <i class="fab fa-facebook"></i>
                   <span class="sr-only">Facebook</span>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link"
-                   href="https://www.instagram.com/mhmdmirhosseini"
-                   title="Instagram">
+                <a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram">
                   <i class="fab fa-instagram"></i>
                   <span class="sr-only">Instagram</span>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link"
-                   href="https://github.com/mattmirhosseini"
-                   title="GitHub">
+                <a class="nav-link" href="https://github.com/mattmirhosseini" title="GitHub">
                   <i class="fab fa-github"></i>
                   <span class="sr-only">GitHub</span>
                 </a>
@@ -429,7 +427,6 @@
             </ul>
           </nav>
         </div>
-
       </div>
     </div>
   </header>
@@ -442,7 +439,6 @@
         <div class="section-divider"></div>
 
         <section class="gallery-section px-3 px-lg-4 pb-4">
-
           <h3 class="section-header">My Birding Photo Collection</h3>
 
           <p class="section-subtext">
@@ -451,201 +447,203 @@
 
           <div class="photo-gallery">
 
-<figure class="photo-card">
-  <a href="images/birding28.jpg" class="lightbox-trigger">
-    <img src="images/birding28.jpg" alt="Birding photo 28" loading="lazy">
-  </a>
-  <figcaption>birding28</figcaption>
-</figure>
+            <!-- Photos are ordered from 28 down to 1. -->
 
-<figure class="photo-card">
-  <a href="images/birding27.jpg" class="lightbox-trigger">
-    <img src="images/birding27.jpg" alt="Birding photo 27" loading="lazy">
-  </a>
-  <figcaption>birding27</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding28.jpg" class="lightbox-trigger">
+                <img src="images/birding28.jpg" alt="Birding photo 28" loading="lazy">
+              </a>
+              <figcaption>birding28</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding26.jpg" class="lightbox-trigger">
-    <img src="images/birding26.jpg" alt="Birding photo 26" loading="lazy">
-  </a>
-  <figcaption>birding26</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding27.jpg" class="lightbox-trigger">
+                <img src="images/birding27.jpg" alt="Birding photo 27" loading="lazy">
+              </a>
+              <figcaption>birding27</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding25.jpg" class="lightbox-trigger">
-    <img src="images/birding25.jpg" alt="Birding photo 25" loading="lazy">
-  </a>
-  <figcaption>birding25</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding26.jpg" class="lightbox-trigger">
+                <img src="images/birding26.jpg" alt="Birding photo 26" loading="lazy">
+              </a>
+              <figcaption>birding26</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding24.jpg" class="lightbox-trigger">
-    <img src="images/birding24.jpg" alt="Birding photo 24" loading="lazy">
-  </a>
-  <figcaption>birding24</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding25.jpg" class="lightbox-trigger">
+                <img src="images/birding25.jpg" alt="Birding photo 25" loading="lazy">
+              </a>
+              <figcaption>birding25</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding23.jpg" class="lightbox-trigger">
-    <img src="images/birding23.jpg" alt="Birding photo 23" loading="lazy">
-  </a>
-  <figcaption>birding23</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding24.jpg" class="lightbox-trigger">
+                <img src="images/birding24.jpg" alt="Birding photo 24" loading="lazy">
+              </a>
+              <figcaption>birding24</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding22.jpg" class="lightbox-trigger">
-    <img src="images/birding22.jpg" alt="Birding photo 22" loading="lazy">
-  </a>
-  <figcaption>birding22</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding23.jpg" class="lightbox-trigger">
+                <img src="images/birding23.jpg" alt="Birding photo 23" loading="lazy">
+              </a>
+              <figcaption>birding23</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding21.jpg" class="lightbox-trigger">
-    <img src="images/birding21.jpg" alt="Birding photo 21" loading="lazy">
-  </a>
-  <figcaption>birding21</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding22.jpg" class="lightbox-trigger">
+                <img src="images/birding22.jpg" alt="Birding photo 22" loading="lazy">
+              </a>
+              <figcaption>birding22</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding20.jpg" class="lightbox-trigger">
-    <img src="images/birding20.jpg" alt="Birding photo 20" loading="lazy">
-  </a>
-  <figcaption>birding20</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding21.jpg" class="lightbox-trigger">
+                <img src="images/birding21.jpg" alt="Birding photo 21" loading="lazy">
+              </a>
+              <figcaption>birding21</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding19.jpg" class="lightbox-trigger">
-    <img src="images/birding19.jpg" alt="Birding photo 19" loading="lazy">
-  </a>
-  <figcaption>birding19</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding20.jpg" class="lightbox-trigger">
+                <img src="images/birding20.jpg" alt="Birding photo 20" loading="lazy">
+              </a>
+              <figcaption>birding20</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding18.jpg" class="lightbox-trigger">
-    <img src="images/birding18.jpg" alt="Birding photo 18" loading="lazy">
-  </a>
-  <figcaption>birding18</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding19.jpg" class="lightbox-trigger">
+                <img src="images/birding19.jpg" alt="Birding photo 19" loading="lazy">
+              </a>
+              <figcaption>birding19</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding17.jpg" class="lightbox-trigger">
-    <img src="images/birding17.jpg" alt="Birding photo 17" loading="lazy">
-  </a>
-  <figcaption>birding17</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding18.jpg" class="lightbox-trigger">
+                <img src="images/birding18.jpg" alt="Birding photo 18" loading="lazy">
+              </a>
+              <figcaption>birding18</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding16.jpg" class="lightbox-trigger">
-    <img src="images/birding16.jpg" alt="Birding photo 16" loading="lazy">
-  </a>
-  <figcaption>birding16</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding17.jpg" class="lightbox-trigger">
+                <img src="images/birding17.jpg" alt="Birding photo 17" loading="lazy">
+              </a>
+              <figcaption>birding17</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding15.jpg" class="lightbox-trigger">
-    <img src="images/birding15.jpg" alt="Birding photo 15" loading="lazy">
-  </a>
-  <figcaption>birding15</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding16.jpg" class="lightbox-trigger">
+                <img src="images/birding16.jpg" alt="Birding photo 16" loading="lazy">
+              </a>
+              <figcaption>birding16</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding14.jpg" class="lightbox-trigger">
-    <img src="images/birding14.jpg" alt="Birding photo 14" loading="lazy">
-  </a>
-  <figcaption>birding14</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding15.jpg" class="lightbox-trigger">
+                <img src="images/birding15.jpg" alt="Birding photo 15" loading="lazy">
+              </a>
+              <figcaption>birding15</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding13.jpg" class="lightbox-trigger">
-    <img src="images/birding13.jpg" alt="Birding photo 13" loading="lazy">
-  </a>
-  <figcaption>birding13</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding14.jpg" class="lightbox-trigger">
+                <img src="images/birding14.jpg" alt="Birding photo 14" loading="lazy">
+              </a>
+              <figcaption>birding14</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding12.jpg" class="lightbox-trigger">
-    <img src="images/birding12.jpg" alt="Birding photo 12" loading="lazy">
-  </a>
-  <figcaption>birding12</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding13.jpg" class="lightbox-trigger">
+                <img src="images/birding13.jpg" alt="Birding photo 13" loading="lazy">
+              </a>
+              <figcaption>birding13</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding11.jpg" class="lightbox-trigger">
-    <img src="images/birding11.jpg" alt="Birding photo 11" loading="lazy">
-  </a>
-  <figcaption>birding11</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding12.jpg" class="lightbox-trigger">
+                <img src="images/birding12.jpg" alt="Birding photo 12" loading="lazy">
+              </a>
+              <figcaption>birding12</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding10.jpg" class="lightbox-trigger">
-    <img src="images/birding10.jpg" alt="Birding photo 10" loading="lazy">
-  </a>
-  <figcaption>birding10</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding11.jpg" class="lightbox-trigger">
+                <img src="images/birding11.jpg" alt="Birding photo 11" loading="lazy">
+              </a>
+              <figcaption>birding11</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding9.jpg" class="lightbox-trigger">
-    <img src="images/birding9.jpg" alt="Birding photo 9" loading="lazy">
-  </a>
-  <figcaption>birding9</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding10.jpg" class="lightbox-trigger">
+                <img src="images/birding10.jpg" alt="Birding photo 10" loading="lazy">
+              </a>
+              <figcaption>birding10</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding8.jpg" class="lightbox-trigger">
-    <img src="images/birding8.jpg" alt="Birding photo 8" loading="lazy">
-  </a>
-  <figcaption>birding8</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding09.jpg" class="lightbox-trigger">
+                <img src="images/birding09.jpg" alt="Birding photo 9" loading="lazy">
+              </a>
+              <figcaption>birding9</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding7.jpg" class="lightbox-trigger">
-    <img src="images/birding7.jpg" alt="Birding photo 7" loading="lazy">
-  </a>
-  <figcaption>birding7</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding08.jpg" class="lightbox-trigger">
+                <img src="images/birding08.jpg" alt="Birding photo 8" loading="lazy">
+              </a>
+              <figcaption>birding8</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding6.jpg" class="lightbox-trigger">
-    <img src="images/birding6.jpg" alt="Birding photo 6" loading="lazy">
-  </a>
-  <figcaption>birding6</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding07.jpg" class="lightbox-trigger">
+                <img src="images/birding07.jpg" alt="Birding photo 7" loading="lazy">
+              </a>
+              <figcaption>birding7</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding5.jpg" class="lightbox-trigger">
-    <img src="images/birding5.jpg" alt="Birding photo 5" loading="lazy">
-  </a>
-  <figcaption>birding5</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding06.jpg" class="lightbox-trigger">
+                <img src="images/birding06.jpg" alt="Birding photo 6" loading="lazy">
+              </a>
+              <figcaption>birding6</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding4.jpg" class="lightbox-trigger">
-    <img src="images/birding4.jpg" alt="Birding photo 4" loading="lazy">
-  </a>
-  <figcaption>birding4</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding05.jpg" class="lightbox-trigger">
+                <img src="images/birding05.jpg" alt="Birding photo 5" loading="lazy">
+              </a>
+              <figcaption>birding5</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding3.jpg" class="lightbox-trigger">
-    <img src="images/birding3.jpg" alt="Birding photo 3" loading="lazy">
-  </a>
-  <figcaption>birding3</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding04.jpg" class="lightbox-trigger">
+                <img src="images/birding04.jpg" alt="Birding photo 4" loading="lazy">
+              </a>
+              <figcaption>birding4</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding2.jpg" class="lightbox-trigger">
-    <img src="images/birding2.jpg" alt="Birding photo 2" loading="lazy">
-  </a>
-  <figcaption>birding2</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding03.jpg" class="lightbox-trigger">
+                <img src="images/birding03.jpg" alt="Birding photo 3" loading="lazy">
+              </a>
+              <figcaption>birding3</figcaption>
+            </figure>
 
-<figure class="photo-card">
-  <a href="images/birding1.jpg" class="lightbox-trigger">
-    <img src="images/birding1.jpg" alt="Birding photo 1" loading="lazy">
-  </a>
-  <figcaption>birding1</figcaption>
-</figure>
+            <figure class="photo-card">
+              <a href="images/birding02.jpg" class="lightbox-trigger">
+                <img src="images/birding02.jpg" alt="Birding photo 2" loading="lazy">
+              </a>
+              <figcaption>birding2</figcaption>
+            </figure>
+
+            <figure class="photo-card">
+              <a href="images/birding01.jpg" class="lightbox-trigger">
+                <img src="images/birding01.jpg" alt="Birding photo 1" loading="lazy">
+              </a>
+              <figcaption>birding1</figcaption>
+            </figure>
 
           </div>
 
@@ -656,9 +654,7 @@
 
           <nav class="gallery-pagination"
                id="galleryPagination"
-               aria-label="Gallery pages">
-          </nav>
-
+               aria-label="Gallery pages"></nav>
         </section>
       </div>
     </div>
@@ -668,49 +664,38 @@
   <footer class="pt-4 pb-4 text-muted text-center d-print-none">
     <div class="container">
       <div class="my-3">
-
         <div class="h4">Matt Mirhosseini</div>
 
         <div class="footer-nav">
           <nav role="navigation">
             <ul class="nav justify-content-center">
-
               <li class="nav-item">
-                <a class="nav-link"
-                   href="https://twitter.com/matmirhosseini"
-                   title="Twitter">
+                <a class="nav-link" href="https://twitter.com/matmirhosseini" title="Twitter">
                   <i class="fab fa-twitter"></i>
                   <span class="sr-only">Twitter</span>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link"
-                   href="https://www.facebook.com/profile.php?id=61568136706109"
-                   title="Facebook">
+                <a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook">
                   <i class="fab fa-facebook"></i>
                   <span class="sr-only">Facebook</span>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link"
-                   href="https://www.instagram.com/mhmdmirhosseini"
-                   title="Instagram">
+                <a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram">
                   <i class="fab fa-instagram"></i>
                   <span class="sr-only">Instagram</span>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link"
-                   href="https://github.com/mattmirhosseini"
-                   title="GitHub">
+                <a class="nav-link" href="https://github.com/mattmirhosseini" title="GitHub">
                   <i class="fab fa-github"></i>
                   <span class="sr-only">GitHub</span>
                 </a>
               </li>
-
             </ul>
           </nav>
         </div>
@@ -720,9 +705,7 @@
         <div class="mb-1">&copy; All rights reserved.</div>
         <div>
           Design -
-          <a href="https://templateflip.com/"
-             target="_blank"
-             rel="noopener">TemplateFlip</a>
+          <a href="https://templateflip.com/" target="_blank" rel="noopener">TemplateFlip</a>
         </div>
       </div>
     </div>
@@ -731,7 +714,10 @@
   <!-- Lightbox -->
   <div class="photo-lightbox"
        id="photoLightbox"
-       aria-hidden="true">
+       aria-hidden="true"
+       role="dialog"
+       aria-modal="true"
+       aria-label="Photo viewer">
 
     <button class="lightbox-close"
             id="lightboxClose"
@@ -744,7 +730,6 @@
             aria-label="Previous photo">&#10094;</button>
 
     <div class="lightbox-content">
-
       <div class="lightbox-image-wrap">
         <img id="lightboxImage" alt="">
       </div>
@@ -754,7 +739,6 @@
         <p id="photoDescription"></p>
         <div id="exifDetails"></div>
       </div>
-
     </div>
 
     <button class="lightbox-nav lightbox-next"
@@ -763,7 +747,8 @@
             aria-label="Next photo">&#10095;</button>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/exif-js@2.3.0"></script>
+  <!-- EXIF reader -->
+  <script src="https://cdn.jsdelivr.net/npm/exif-js@2.3.0/build/exif.js"></script>
 
   <script>
     (function () {
@@ -774,9 +759,9 @@
           document.querySelectorAll(".photo-gallery .photo-card")
         );
 
-        const links = cards.map(card =>
-          card.querySelector(".photo-link")
-        ).filter(Boolean);
+        const links = cards
+          .map(card => card.querySelector(".lightbox-trigger"))
+          .filter(Boolean);
 
         const viewer = document.getElementById("photoLightbox");
         const viewerImage = document.getElementById("lightboxImage");
@@ -791,9 +776,9 @@
         const nextButton = document.getElementById("lightboxNext");
 
         if (
-          !cards.length || !viewer || !viewerImage ||
-          !title || !description || !details ||
-          !pagination || !pageInfo
+          !cards.length || !links.length || !viewer || !viewerImage ||
+          !title || !description || !details || !pagination || !pageInfo ||
+          !closeButton || !prevButton || !nextButton
         ) {
           console.error("Birding gallery: required HTML elements are missing.");
           return;
@@ -805,9 +790,9 @@
         let currentIndex = 0;
         let requestId = 0;
         let visibleLinks = [];
+        let lastFocusedElement = null;
 
-        /* Pagination */
-
+        // PAGINATION
         function showPage(page, scrollToGallery = true) {
           const totalPages = Math.max(
             1,
@@ -832,25 +817,24 @@
           renderPagination(totalPages);
 
           if (scrollToGallery) {
-            document.querySelector(".gallery-section")
-              .scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-              });
+            document.querySelector(".gallery-section").scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
           }
         }
 
         function renderPagination(totalPages) {
           pagination.replaceChildren();
 
-          function addButton(label, page, options = {}) {
+          function addButton(label, page, disabled = false, active = false) {
             const button = document.createElement("button");
 
             button.type = "button";
             button.textContent = label;
-            button.disabled = Boolean(options.disabled);
+            button.disabled = disabled;
 
-            if (options.active) {
+            if (active) {
               button.classList.add("active");
               button.setAttribute("aria-current", "page");
             }
@@ -862,23 +846,21 @@
             pagination.appendChild(button);
           }
 
-          addButton("Previous", currentPage - 1, {
-            disabled: currentPage === 1
-          });
+          addButton("Previous", currentPage - 1, currentPage === 1);
 
           for (let page = 1; page <= totalPages; page++) {
-            addButton(String(page), page, {
-              active: page === currentPage
-            });
+            addButton(
+              String(page),
+              page,
+              false,
+              page === currentPage
+            );
           }
 
-          addButton("Next", currentPage + 1, {
-            disabled: currentPage === totalPages
-          });
+          addButton("Next", currentPage + 1, currentPage === totalPages);
         }
 
-        /* EXIF metadata helpers */
-
+        // EXIF METADATA
         function addRow(label, value) {
           if (value === undefined || value === null || value === "") {
             return;
@@ -892,16 +874,11 @@
 
           const valueElement = document.createElement("span");
 
-          if (
-            typeof value === "object" &&
-            value.numerator !== undefined
-          ) {
-            valueElement.textContent =
-              value.numerator / (value.denominator || 1);
-          } else {
-            valueElement.textContent = String(value);
+          if (typeof value === "object" && value.numerator !== undefined) {
+            value = value.numerator / (value.denominator || 1);
           }
 
+          valueElement.textContent = String(value);
           row.append(labelElement, valueElement);
           details.appendChild(row);
         }
@@ -925,7 +902,7 @@
 
           addRow(
             "Dimensions",
-            image.naturalWidth + " × " + image.naturalHeight + " px"
+            `${image.naturalWidth} × ${image.naturalHeight} px`
           );
 
           if (typeof EXIF === "undefined") {
@@ -946,26 +923,22 @@
               addRow("ISO", Array.isArray(iso) ? iso.join(", ") : iso);
 
               const aperture = rationalValue(get("FNumber"));
-
               if (aperture != null) {
                 addRow("Aperture", "f/" + aperture);
               }
 
               const exposure = rationalValue(get("ExposureTime"));
-
-              if (exposure != null) {
+              if (exposure != null && Number(exposure) > 0) {
                 const seconds = Number(exposure);
 
-                const shutter =
-                  seconds > 0 && seconds < 1
-                    ? "1/" + Math.round(1 / seconds) + " s"
-                    : seconds + " s";
+                const shutter = seconds < 1
+                  ? `1/${Math.round(1 / seconds)} s`
+                  : `${seconds} s`;
 
                 addRow("Shutter speed", shutter);
               }
 
               const focal = rationalValue(get("FocalLength"));
-
               if (focal != null) {
                 addRow("Focal length", focal + " mm");
               }
@@ -984,24 +957,32 @@
           }
         }
 
-        /* Lightbox */
-
+        // LIGHTBOX
         function openPhoto(index) {
           if (!visibleLinks.length) return;
 
-          currentIndex =
-            (index + visibleLinks.length) % visibleLinks.length;
+          currentIndex = (index + visibleLinks.length) % visibleLinks.length;
 
           const link = visibleLinks[currentIndex];
           const thumbnail = link.querySelector("img");
+          const card = link.closest(".photo-card");
+          const caption = card.querySelector("figcaption");
           const photoUrl = link.href;
           const id = ++requestId;
 
-          title.textContent = thumbnail.alt || "Bird photograph";
+          if (!viewer.classList.contains("is-open")) {
+            lastFocusedElement = document.activeElement;
+          }
+
+          title.textContent =
+            caption?.textContent.trim() ||
+            thumbnail.alt ||
+            "Bird photograph";
+
           description.textContent = link.dataset.description || "";
           details.replaceChildren();
 
-          viewerImage.alt = title.textContent;
+          viewerImage.alt = thumbnail.alt || title.textContent;
           viewerImage.src = photoUrl;
 
           viewer.classList.add("is-open");
@@ -1032,6 +1013,10 @@
 
           viewerImage.removeAttribute("src");
           document.body.style.overflow = "";
+
+          if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+            lastFocusedElement.focus();
+          }
         }
 
         links.forEach(function (link) {
@@ -1065,16 +1050,16 @@
         document.addEventListener("keydown", function (event) {
           if (!viewer.classList.contains("is-open")) return;
 
-          if (event.key === "Escape") closePhoto();
-          if (event.key === "ArrowLeft") {
+          if (event.key === "Escape") {
+            closePhoto();
+          } else if (event.key === "ArrowLeft") {
             openPhoto(currentIndex - 1);
-          }
-          if (event.key === "ArrowRight") {
+          } else if (event.key === "ArrowRight") {
             openPhoto(currentIndex + 1);
           }
         });
 
-        /* Start on page 1 without scrolling */
+        // Start on page 1 without scrolling.
         showPage(1, false);
       }
 
