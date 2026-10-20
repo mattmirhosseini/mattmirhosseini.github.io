@@ -1,0 +1,1038 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>My Birding Collection | Matt Mirhosseini</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <link href="css/font-awesome/css/all.min.css?ver=1.2.0" rel="stylesheet">
+  <link href="css/bootstrap.min.css?ver=1.2.0" rel="stylesheet">
+  <link href="css/aos.css?ver=1.2.0" rel="stylesheet">
+  <link href="css/main.css?ver=1.2.0" rel="stylesheet">
+  <link href="css/gallery.css?v=2" rel="stylesheet">
+
+  <style>
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background-color: #ddd;
+      margin: 40px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin: 20px 0;
+      color: #333;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .section-subtext {
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.6;
+      font-weight: 300;
+      color: #777;
+      margin-bottom: 30px;
+      font-family: "Roboto", sans-serif;
+    }
+
+    header .nav-link,
+    footer .nav-link {
+      font-size: 14px;
+    }
+
+    /* Photo grid */
+    .photo-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+
+    .photo-card {
+      margin: 0;
+      min-width: 0;
+    }
+
+    .photo-card[hidden] {
+      display: none !important;
+    }
+
+    .photo-link {
+      display: block;
+      overflow: hidden;
+      cursor: zoom-in;
+      background: #eee;
+    }
+
+    .photo-link img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: transform .25s ease;
+    }
+
+    .photo-link:hover img {
+      transform: scale(1.025);
+    }
+
+    .photo-caption {
+      padding: 10px 2px 14px;
+      margin: 0;
+      font-family: "Roboto", sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    /* Pagination */
+    .gallery-pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 30px 0 15px;
+    }
+
+    .gallery-pagination button {
+      min-width: 42px;
+      height: 42px;
+      padding: 0 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background: #fff;
+      color: #444;
+      font-family: "Roboto", sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease;
+    }
+
+    .gallery-pagination button:hover:not(:disabled),
+    .gallery-pagination button.active {
+      background: #333;
+      color: #fff;
+      border-color: #333;
+    }
+
+    .gallery-pagination button:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+    }
+
+    .gallery-page-info {
+      text-align: center;
+      margin: 15px 0 5px;
+      color: #777;
+      font-family: "Roboto", sans-serif;
+      font-size: 13px;
+    }
+
+    /* Full-screen photo viewer */
+    #photoLightbox.photo-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      box-sizing: border-box;
+      padding: 55px 65px 25px;
+      background: rgba(0, 0, 0, .96);
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+    }
+
+    #photoLightbox.photo-lightbox.is-open {
+      display: flex !important;
+    }
+
+    .lightbox-content {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 26px;
+    }
+
+    .lightbox-image-wrap {
+      flex: 1 1 auto;
+      min-width: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #lightboxImage {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .photo-info {
+      flex: 0 0 270px;
+      width: 270px;
+      max-height: 100%;
+      overflow-y: auto;
+      overflow-wrap: anywhere;
+      color: #eee;
+      font-family: "Roboto", sans-serif;
+    }
+
+    .photo-info h3 {
+      color: #fff;
+      font-family: "Poppins", sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin: 0 0 12px;
+    }
+
+    .photo-info p {
+      color: #ccc;
+      font-family: "Roboto", sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.7;
+      margin: 0 0 18px;
+    }
+
+    #exifDetails {
+      color: #ccc;
+      font-family: "Roboto", sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .exif-row {
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .15);
+      line-height: 1.5;
+    }
+
+    .exif-row strong {
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .lightbox-close,
+    .lightbox-nav {
+      position: absolute;
+      z-index: 5;
+      border: 0;
+      color: #fff;
+      background: rgba(50, 50, 50, .8);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .lightbox-close {
+      top: 12px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 32px;
+    }
+
+    .lightbox-nav {
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 58px;
+      border-radius: 5px;
+      font-size: 25px;
+    }
+
+    .lightbox-prev {
+      left: 10px;
+    }
+
+    .lightbox-next {
+      right: 10px;
+    }
+
+    .lightbox-close:hover,
+    .lightbox-nav:hover {
+      background: #555;
+    }
+
+    @media (max-width: 800px) {
+      .photo-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      #photoLightbox.photo-lightbox {
+        padding: 52px 42px 15px;
+      }
+
+      .lightbox-content {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .lightbox-image-wrap {
+        width: 100%;
+        flex: 1 1 auto;
+        min-height: 0;
+      }
+
+      .photo-info {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 600px;
+        max-height: 30%;
+      }
+
+      .photo-info h3 {
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      .photo-info p {
+        margin-bottom: 8px;
+      }
+
+      .exif-row {
+        display: inline-block;
+        margin-right: 10px;
+        border: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .photo-gallery {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .section-header {
+        font-size: 22px;
+      }
+
+      .section-subtext {
+        font-size: 15px;
+      }
+
+      .gallery-pagination {
+        gap: 5px;
+      }
+
+      .gallery-pagination button {
+        min-width: 36px;
+        height: 38px;
+        padding: 0 9px;
+      }
+
+      #photoLightbox.photo-lightbox {
+        padding: 48px 34px 12px;
+      }
+
+      .lightbox-close {
+        top: 5px;
+        right: 7px;
+      }
+
+      .lightbox-nav {
+        width: 30px;
+        height: 44px;
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body id="top">
+
+  <!-- Header -->
+  <header class="d-print-none">
+    <div class="container text-center text-lg-left">
+      <div class="py-3 clearfix">
+
+        <h1 class="site-title mb-0">Matt Mirhosseini</h1>
+
+        <div class="site-nav">
+          <nav role="navigation">
+            <ul class="nav justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="MyArt.html">My Photography</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="birding02.html">Birding Pg.2</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link"
+                   href="https://twitter.com/matmirhosseini"
+                   title="Twitter">
+                  <i class="fab fa-twitter"></i>
+                  <span class="sr-only">Twitter</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link"
+                   href="https://www.facebook.com/profile.php?id=61568136706109"
+                   title="Facebook">
+                  <i class="fab fa-facebook"></i>
+                  <span class="sr-only">Facebook</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link"
+                   href="https://www.instagram.com/mhmdmirhosseini"
+                   title="Instagram">
+                  <i class="fab fa-instagram"></i>
+                  <span class="sr-only">Instagram</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link"
+                   href="https://github.com/mattmirhosseini"
+                   title="GitHub">
+                  <i class="fab fa-github"></i>
+                  <span class="sr-only">GitHub</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Main gallery -->
+  <div class="page-content">
+    <div class="container">
+      <div class="cover shadow-lg bg-white">
+
+        <div class="section-divider"></div>
+
+        <section class="gallery-section px-3 px-lg-4 pb-4">
+
+          <h3 class="section-header">My Birding Photo Collection</h3>
+
+          <p class="section-subtext">
+            A collection of my bird photography.
+          </p>
+
+          <div class="photo-gallery">
+
+            <figure class="photo-card">
+              <a href="images/birding01.jpg"
+                 class="photo-link"
+                 data-description="Grey heron.">
+                <img src="images/birding01.jpg"
+                     alt="Grey heron"
+                     loading="lazy">
+              </a>
+              <figcaption class="photo-caption">Grey heron</figcaption>
+            </figure>
+
+            <figure class="photo-card">
+              <a href="images/birding02.jpg"
+                 class="photo-link"
+                 data-description="Grey heron.">
+                <img src="images/birding02.jpg"
+                     alt="Grey heron"
+                     loading="lazy">
+              </a>
+              <figcaption class="photo-caption">Grey heron</figcaption>
+            </figure>
+
+            <figure class="photo-card">
+              <a href="images/birding03.jpg"
+                 class="photo-link"
+                 data-description="Grey heron.">
+                <img src="images/birding03.jpg"
+                     alt="Grey heron"
+                     loading="lazy">
+              </a>
+              <figcaption class="photo-caption">Grey heron</figcaption>
+            </figure>
+
+            <figure class="photo-card">
+              <a href="images/birding04.jpg"
+                 class="photo-link"
+                 data-description="Bird photograph.">
+                <img src="images/birding04.jpg"
+                     alt="Bird photograph"
+                     loading="lazy">
+              </a>
+              <figcaption class="photo-caption">birding04</figcaption>
+            </figure>
+
+            <figure class="photo-card">
+              <a href="images/birding05.jpg"
+                 class="photo-link"
+                 data-description="Bird photograph.">
+                <img src="images/birding05.jpg"
+                     alt="Bird photograph"
+                     loading="lazy">
+              </a>
+              <figcaption class="photo-caption">birding05</figcaption>
+            </figure>
+
+            <figure class="photo-card">
+              <a href="images/birding06.jpg"
+                 class="photo-link"
+                 data-description="Bird photograph.">
+                <img src="images/birding06.jpg"
+                     alt="Bird photograph"
+                     loading="lazy">
+              </a>
+              <figcaption class="photo-caption">birding06</figcaption>
+            </figure>
+
+            <figure class="photo-card">
+              <a href="images/birding07.jpg"
+                 class="photo-link"
+                 data-description="Bird photograph.">
+                <img src="images/birding07.jpg"
+                     alt="Bird photograph"
+                     loading="lazy">
+              </a>
+              <figcaption class="photo-caption">birding07</figcaption>
+            </figure>
+
+            <figure class="photo-card">
+              <a href="images/birding08.jpg"
+                 class="photo-link"
+                 data-description="Bird photograph.">
+                <img src="images/birding08.jpg"
+                     alt="Bird photograph"
+                     loading="lazy">
+              </a>
+              <figcaption class="photo-caption">birding08</figcaption>
+            </figure>
+
+            <figure class="photo-card">
+              <a href="images/birding09.jpg"
+                 class="photo-link"
+                 data-description="Bird photograph.">
+                <img src="images/birding09.jpg"
+                     alt="Bird photograph"
+                     loading="lazy">
+              </a>
+              <figcaption class="photo-caption">birding09</figcaption>
+            </figure>
+
+            <figure class="photo-card">
+              <a href="images/birding10.jpg"
+                 class="photo-link"
+                 data-description="Bird photograph.">
+                <img src="images/birding10.jpg"
+                     alt="Bird photograph"
+                     loading="lazy">
+              </a>
+              <figcaption class="photo-caption">birding10</figcaption>
+            </figure>
+
+            <figure class="photo-card">
+              <a href="images/birding11.jpg"
+                 class="photo-link"
+                 data-description="Bird photograph.">
+                <img src="images/birding11.jpg"
+                     alt="Bird photograph"
+                     loading="lazy">
+              </a>
+              <figcaption class="photo-caption">birding11</figcaption>
+            </figure>
+
+            <figure class="photo-card">
+              <a href="images/birding12.jpg"
+                 class="photo-link"
+                 data-description="Bird photograph.">
+                <img src="images/birding12.jpg"
+                     alt="Bird photograph"
+                     loading="lazy">
+              </a>
+              <figcaption class="photo-caption">birding12</figcaption>
+            </figure>
+
+            <!--
+              Add more figure.photo-card elements here.
+              Photos 13–24 will automatically appear on page 2.
+            -->
+
+          </div>
+
+          <!-- Pagination -->
+          <div class="gallery-page-info"
+               id="galleryPageInfo"
+               aria-live="polite"></div>
+
+          <nav class="gallery-pagination"
+               id="galleryPagination"
+               aria-label="Gallery pages">
+          </nav>
+
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="pt-4 pb-4 text-muted text-center d-print-none">
+    <div class="container">
+      <div class="my-3">
+
+        <div class="h4">Matt Mirhosseini</div>
+
+        <div class="footer-nav">
+          <nav role="navigation">
+            <ul class="nav justify-content-center">
+
+              <li class="nav-item">
+                <a class="nav-link"
+                   href="https://twitter.com/matmirhosseini"
+                   title="Twitter">
+                  <i class="fab fa-twitter"></i>
+                  <span class="sr-only">Twitter</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link"
+                   href="https://www.facebook.com/profile.php?id=61568136706109"
+                   title="Facebook">
+                  <i class="fab fa-facebook"></i>
+                  <span class="sr-only">Facebook</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link"
+                   href="https://www.instagram.com/mhmdmirhosseini"
+                   title="Instagram">
+                  <i class="fab fa-instagram"></i>
+                  <span class="sr-only">Instagram</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link"
+                   href="https://github.com/mattmirhosseini"
+                   title="GitHub">
+                  <i class="fab fa-github"></i>
+                  <span class="sr-only">GitHub</span>
+                </a>
+              </li>
+
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="text-small">
+        <div class="mb-1">&copy; All rights reserved.</div>
+        <div>
+          Design -
+          <a href="https://templateflip.com/"
+             target="_blank"
+             rel="noopener">TemplateFlip</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="photo-lightbox"
+       id="photoLightbox"
+       aria-hidden="true">
+
+    <button class="lightbox-close"
+            id="lightboxClose"
+            type="button"
+            aria-label="Close">&times;</button>
+
+    <button class="lightbox-nav lightbox-prev"
+            id="lightboxPrev"
+            type="button"
+            aria-label="Previous photo">&#10094;</button>
+
+    <div class="lightbox-content">
+
+      <div class="lightbox-image-wrap">
+        <img id="lightboxImage" alt="">
+      </div>
+
+      <div class="photo-info">
+        <h3 id="photoTitle"></h3>
+        <p id="photoDescription"></p>
+        <div id="exifDetails"></div>
+      </div>
+
+    </div>
+
+    <button class="lightbox-nav lightbox-next"
+            id="lightboxNext"
+            type="button"
+            aria-label="Next photo">&#10095;</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/exif-js@2.3.0"></script>
+
+  <script>
+    (function () {
+      "use strict";
+
+      function initializeBirdingGallery() {
+        const cards = Array.from(
+          document.querySelectorAll(".photo-gallery .photo-card")
+        );
+
+        const links = cards.map(card =>
+          card.querySelector(".photo-link")
+        ).filter(Boolean);
+
+        const viewer = document.getElementById("photoLightbox");
+        const viewerImage = document.getElementById("lightboxImage");
+        const title = document.getElementById("photoTitle");
+        const description = document.getElementById("photoDescription");
+        const details = document.getElementById("exifDetails");
+        const pagination = document.getElementById("galleryPagination");
+        const pageInfo = document.getElementById("galleryPageInfo");
+
+        const closeButton = document.getElementById("lightboxClose");
+        const prevButton = document.getElementById("lightboxPrev");
+        const nextButton = document.getElementById("lightboxNext");
+
+        if (
+          !cards.length || !viewer || !viewerImage ||
+          !title || !description || !details ||
+          !pagination || !pageInfo
+        ) {
+          console.error("Birding gallery: required HTML elements are missing.");
+          return;
+        }
+
+        const photosPerPage = 12;
+
+        let currentPage = 1;
+        let currentIndex = 0;
+        let requestId = 0;
+        let visibleLinks = [];
+
+        /* Pagination */
+
+        function showPage(page, scrollToGallery = true) {
+          const totalPages = Math.max(
+            1,
+            Math.ceil(cards.length / photosPerPage)
+          );
+
+          currentPage = Math.max(1, Math.min(page, totalPages));
+
+          const start = (currentPage - 1) * photosPerPage;
+          const end = Math.min(start + photosPerPage, cards.length);
+
+          cards.forEach((card, index) => {
+            card.hidden = index < start || index >= end;
+          });
+
+          visibleLinks = links.slice(start, end);
+
+          pageInfo.textContent = cards.length
+            ? `Showing ${start + 1}–${end} of ${cards.length} photos`
+            : "No photos available.";
+
+          renderPagination(totalPages);
+
+          if (scrollToGallery) {
+            document.querySelector(".gallery-section")
+              .scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+              });
+          }
+        }
+
+        function renderPagination(totalPages) {
+          pagination.replaceChildren();
+
+          function addButton(label, page, options = {}) {
+            const button = document.createElement("button");
+
+            button.type = "button";
+            button.textContent = label;
+            button.disabled = Boolean(options.disabled);
+
+            if (options.active) {
+              button.classList.add("active");
+              button.setAttribute("aria-current", "page");
+            }
+
+            button.addEventListener("click", function () {
+              showPage(page);
+            });
+
+            pagination.appendChild(button);
+          }
+
+          addButton("Previous", currentPage - 1, {
+            disabled: currentPage === 1
+          });
+
+          for (let page = 1; page <= totalPages; page++) {
+            addButton(String(page), page, {
+              active: page === currentPage
+            });
+          }
+
+          addButton("Next", currentPage + 1, {
+            disabled: currentPage === totalPages
+          });
+        }
+
+        /* EXIF metadata helpers */
+
+        function addRow(label, value) {
+          if (value === undefined || value === null || value === "") {
+            return;
+          }
+
+          const row = document.createElement("div");
+          row.className = "exif-row";
+
+          const labelElement = document.createElement("strong");
+          labelElement.textContent = label + ": ";
+
+          const valueElement = document.createElement("span");
+
+          if (
+            typeof value === "object" &&
+            value.numerator !== undefined
+          ) {
+            valueElement.textContent =
+              value.numerator / (value.denominator || 1);
+          } else {
+            valueElement.textContent = String(value);
+          }
+
+          row.append(labelElement, valueElement);
+          details.appendChild(row);
+        }
+
+        function rationalValue(value) {
+          if (
+            value &&
+            typeof value === "object" &&
+            value.numerator !== undefined
+          ) {
+            return value.numerator / (value.denominator || 1);
+          }
+
+          return value;
+        }
+
+        function loadExif(image, id) {
+          if (id !== requestId) return;
+
+          details.replaceChildren();
+
+          addRow(
+            "Dimensions",
+            image.naturalWidth + " × " + image.naturalHeight + " px"
+          );
+
+          if (typeof EXIF === "undefined") {
+            addRow("Metadata", "EXIF reader unavailable");
+            return;
+          }
+
+          try {
+            EXIF.getData(image, function () {
+              if (id !== requestId) return;
+
+              const get = tag => EXIF.getTag(this, tag);
+
+              addRow("Camera", get("Model"));
+              addRow("Lens", get("LensModel"));
+
+              const iso = get("ISOSpeedRatings");
+              addRow("ISO", Array.isArray(iso) ? iso.join(", ") : iso);
+
+              const aperture = rationalValue(get("FNumber"));
+
+              if (aperture != null) {
+                addRow("Aperture", "f/" + aperture);
+              }
+
+              const exposure = rationalValue(get("ExposureTime"));
+
+              if (exposure != null) {
+                const seconds = Number(exposure);
+
+                const shutter =
+                  seconds > 0 && seconds < 1
+                    ? "1/" + Math.round(1 / seconds) + " s"
+                    : seconds + " s";
+
+                addRow("Shutter speed", shutter);
+              }
+
+              const focal = rationalValue(get("FocalLength"));
+
+              if (focal != null) {
+                addRow("Focal length", focal + " mm");
+              }
+
+              addRow("Date taken", get("DateTimeOriginal"));
+              addRow("Exposure compensation", get("ExposureBias"));
+
+              if (details.children.length === 1) {
+                addRow("Metadata", "No EXIF camera data found");
+              }
+            });
+          } catch (error) {
+            if (id === requestId) {
+              addRow("Metadata", "Could not read EXIF data");
+            }
+          }
+        }
+
+        /* Lightbox */
+
+        function openPhoto(index) {
+          if (!visibleLinks.length) return;
+
+          currentIndex =
+            (index + visibleLinks.length) % visibleLinks.length;
+
+          const link = visibleLinks[currentIndex];
+          const thumbnail = link.querySelector("img");
+          const photoUrl = link.href;
+          const id = ++requestId;
+
+          title.textContent = thumbnail.alt || "Bird photograph";
+          description.textContent = link.dataset.description || "";
+          details.replaceChildren();
+
+          viewerImage.alt = title.textContent;
+          viewerImage.src = photoUrl;
+
+          viewer.classList.add("is-open");
+          viewer.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+
+          const metadataImage = new Image();
+
+          metadataImage.onload = function () {
+            loadExif(metadataImage, id);
+          };
+
+          metadataImage.onerror = function () {
+            if (id !== requestId) return;
+
+            details.replaceChildren();
+            addRow("Metadata", "Could not load image metadata");
+          };
+
+          metadataImage.src = photoUrl;
+        }
+
+        function closePhoto() {
+          requestId++;
+
+          viewer.classList.remove("is-open");
+          viewer.setAttribute("aria-hidden", "true");
+
+          viewerImage.removeAttribute("src");
+          document.body.style.overflow = "";
+        }
+
+        links.forEach(function (link) {
+          link.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            const index = visibleLinks.indexOf(link);
+
+            if (index !== -1) {
+              openPhoto(index);
+            }
+          });
+        });
+
+        closeButton.addEventListener("click", closePhoto);
+
+        prevButton.addEventListener("click", function () {
+          openPhoto(currentIndex - 1);
+        });
+
+        nextButton.addEventListener("click", function () {
+          openPhoto(currentIndex + 1);
+        });
+
+        viewer.addEventListener("click", function (event) {
+          if (event.target === viewer) {
+            closePhoto();
+          }
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (!viewer.classList.contains("is-open")) return;
+
+          if (event.key === "Escape") closePhoto();
+          if (event.key === "ArrowLeft") {
+            openPhoto(currentIndex - 1);
+          }
+          if (event.key === "ArrowRight") {
+            openPhoto(currentIndex + 1);
+          }
+        });
+
+        /* Start on page 1 without scrolling */
+        showPage(1, false);
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener(
+          "DOMContentLoaded",
+          initializeBirdingGallery
+        );
+      } else {
+        initializeBirdingGallery();
+      }
+    })();
+  </script>
+
+  <script src="scripts/bootstrap.bundle.min.js?ver=1.2.0"></script>
+  <script src="scripts/aos.js?ver=1.2.0"></script>
+  <script src="scripts/main.js?ver=1.2.0"></script>
+
+</body>
+</html>
