@@ -2,1081 +2,1111 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>My Birding Gallery</title>
+    <title>My Birding Photo Collection | Matt Mirhosseini</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="css/font-awesome/css/all.min.css?ver=1.2.0" rel="stylesheet">
-  <link href="css/bootstrap.min.css?ver=1.2.0" rel="stylesheet">
-  <link href="css/aos.css?ver=1.2.0" rel="stylesheet">
-  <link href="css/main.css?ver=1.2.0" rel="stylesheet">
-  <link href="css/gallery.css?v=2" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet"
+    >
 
-  <style>
-    .section-divider {
-      width: 100%;
-      height: 1px;
-      background-color: #ddd;
-      margin: 40px 0;
-    }
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
 
-    .section-header {
-      text-align: center;
-      font-size: 24px;
-      font-weight: 600;
-      line-height: 1.4;
-      margin: 20px 0;
-      color: #333;
-      font-family: "Poppins", sans-serif;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    .section-subtext {
-      text-align: center;
-      font-size: 16px;
-      line-height: 1.6;
-      font-weight: 300;
-      color: #777;
-      margin-bottom: 30px;
-      font-family: "Roboto", sans-serif;
-    }
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: #fff;
+            color: #333;
+        }
 
-    header .nav-link,
-    footer .nav-link {
-      font-size: 14px;
-    }
+        a {
+            text-decoration: none;
+        }
 
-    /* Photo grid */
-    .photo-gallery {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 20px;
-      align-items: start;
-    }
+        /* Header */
 
-    .photo-card {
-      margin: 0;
-      min-width: 0;
-    }
+        .site-header {
+            text-align: center;
+            padding: 45px 20px 25px;
+        }
 
-    .photo-card[hidden] {
-      display: none !important;
-    }
+        .site-header h1 {
+            margin: 0 0 12px;
+            font-size: 32px;
+            font-weight: 500;
+        }
 
-    .lightbox-trigger {
-      display: block;
-      overflow: hidden;
-      cursor: zoom-in;
-      background: #eee;
-    }
+        .site-header p {
+            margin: 0;
+            color: #777;
+            font-size: 16px;
+            font-weight: 300;
+        }
 
-    .lightbox-trigger img {
-      display: block;
-      width: 100%;
-      height: auto;
-      transition: transform .25s ease;
-    }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #555;
+            font-size: 14px;
+        }
 
-    .lightbox-trigger:hover img {
-      transform: scale(1.025);
-    }
+        .back-link:hover {
+            color: #000;
+        }
 
-    .photo-card figcaption {
-      padding: 10px 2px 14px;
-      margin: 0;
-      font-family: "Roboto", sans-serif;
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1.5;
-      color: #555;
-    }
+        /* Gallery container */
 
-    /* Pagination */
-    .gallery-pagination {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 30px 0 15px;
-    }
+        .gallery-container {
+            width: min(1200px, 94%);
+            margin: 0 auto 50px;
+        }
 
-    .gallery-pagination button {
-      min-width: 42px;
-      height: 42px;
-      padding: 0 12px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      background: #fff;
-      color: #444;
-      font-family: "Roboto", sans-serif;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background .2s ease, color .2s ease;
-    }
+        .gallery-heading {
+            text-align: center;
+            margin: 15px 0 30px;
+            font-size: 24px;
+            font-weight: 400;
+        }
 
-    .gallery-pagination button:hover:not(:disabled),
-    .gallery-pagination button.active {
-      background: #333;
-      color: #fff;
-      border-color: #333;
-    }
+        /* Three-column photo grid */
 
-    .gallery-pagination button:disabled {
-      opacity: .4;
-      cursor: not-allowed;
-    }
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 30px 24px;
+        }
 
-    .gallery-page-info {
-      text-align: center;
-      margin: 15px 0 5px;
-      color: #777;
-      font-family: "Roboto", sans-serif;
-      font-size: 13px;
-    }
+        .photo-card {
+            min-width: 0;
+            margin: 0;
+            text-align: center;
+        }
 
-    /* Full-screen photo viewer */
-    #photoLightbox.photo-lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 999999;
-      width: 100%;
-      height: 100%;
-      height: 100dvh;
-      box-sizing: border-box;
-      padding: 55px 65px 25px;
-      background: rgba(0, 0, 0, .96);
-      align-items: center;
-      justify-content: center;
-      overflow: auto;
-    }
+        .photo-link {
+            display: block;
+            width: 100%;
+            overflow: hidden;
+            background: #f4f4f4;
+            cursor: zoom-in;
+        }
 
-    #photoLightbox.photo-lightbox.is-open {
-      display: flex !important;
-    }
+        .photo-link img {
+            display: block;
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
 
-    .lightbox-content {
-      width: 100%;
-      height: 100%;
-      min-height: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 26px;
-    }
+        .photo-link:hover img {
+            transform: scale(1.035);
+        }
 
-    .lightbox-image-wrap {
-      flex: 1 1 auto;
-      min-width: 0;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+        /* Centered captions */
 
-    #lightboxImage {
-      display: block;
-      max-width: 100%;
-      max-height: 100%;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-    }
+        .photo-caption {
+            display: block;
+            width: 100%;
+            padding: 12px 5px 0;
+            margin: 0;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #555;
+        }
 
-    .photo-info {
-      flex: 0 0 270px;
-      width: 270px;
-      max-height: 100%;
-      overflow-y: auto;
-      overflow-wrap: anywhere;
-      color: #eee;
-      font-family: "Roboto", sans-serif;
-    }
+        /* Pagination */
 
-    .photo-info h3 {
-      color: #fff;
-      font-family: "Poppins", sans-serif;
-      font-size: 20px;
-      font-weight: 600;
-      line-height: 1.4;
-      margin: 0 0 12px;
-    }
+        .pagination-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin: 40px 0 20px;
+        }
 
-    .photo-info p {
-      color: #ccc;
-      font-family: "Roboto", sans-serif;
-      font-size: 14px;
-      font-weight: 300;
-      line-height: 1.7;
-      margin: 0 0 18px;
-    }
+        .pagination-info {
+            color: #777;
+            font-size: 14px;
+            text-align: center;
+        }
 
-    #exifDetails {
-      color: #ccc;
-      font-family: "Roboto", sans-serif;
-      font-size: 13px;
-      font-weight: 300;
-      line-height: 1.5;
-    }
+        .pagination {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
 
-    .exif-row {
-      padding: 7px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, .15);
-      line-height: 1.5;
-    }
+        .pagination button {
+            min-width: 38px;
+            height: 38px;
+            padding: 0 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #fff;
+            color: #444;
+            font: inherit;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+        }
 
-    .exif-row strong {
-      color: #fff;
-      font-weight: 500;
-    }
+        .pagination button:hover:not(:disabled) {
+            background: #eee;
+        }
 
-    .lightbox-close,
-    .lightbox-nav {
-      position: absolute;
-      z-index: 5;
-      border: 0;
-      color: #fff;
-      background: rgba(50, 50, 50, .8);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 1;
-    }
+        .pagination button.active {
+            background: #333;
+            border-color: #333;
+            color: #fff;
+        }
 
-    .lightbox-close {
-      top: 12px;
-      right: 20px;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      font-size: 32px;
-    }
+        .pagination button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
 
-    .lightbox-nav {
-      top: 50%;
-      transform: translateY(-50%);
-      width: 44px;
-      height: 58px;
-      border-radius: 5px;
-      font-size: 25px;
-    }
+        /* Fullscreen lightbox */
 
-    .lightbox-prev {
-      left: 10px;
-    }
+        #photoLightbox.photo-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            width: 100%;
+            height: 100%;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.96);
+            align-items: center;
+            justify-content: center;
+        }
 
-    .lightbox-next {
-      right: 10px;
-    }
+        #photoLightbox.photo-lightbox.open {
+            display: flex;
+        }
 
-    .lightbox-close:hover,
-    .lightbox-nav:hover {
-      background: #555;
-    }
+        .lightbox-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            width: 100%;
+            height: 100%;
+            max-width: 1500px;
+            position: relative;
+        }
 
-    .lightbox-close:focus-visible,
-    .lightbox-nav:focus-visible,
-    .gallery-pagination button:focus-visible {
-      outline: 2px solid #fff;
-      outline-offset: 3px;
-    }
+        .lightbox-image-container {
+            display: flex;
+            flex: 1 1 auto;
+            min-width: 0;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+        }
 
-    @media (max-width: 800px) {
-      .photo-gallery {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-      }
+        #lightboxImage {
+            display: block;
+            max-width: 100%;
+            max-height: 92vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
 
-      #photoLightbox.photo-lightbox {
-        padding: 52px 42px 15px;
-      }
+        .photo-info {
+            flex: 0 0 260px;
+            max-height: 85vh;
+            overflow-y: auto;
+            color: #fff;
+            padding: 10px;
+        }
 
-      .lightbox-content {
-        flex-direction: column;
-        gap: 12px;
-      }
+        .photo-info h2 {
+            margin: 0 0 10px;
+            font-size: 20px;
+            font-weight: 500;
+            overflow-wrap: anywhere;
+        }
 
-      .lightbox-image-wrap {
-        width: 100%;
-        flex: 1 1 auto;
-        min-height: 0;
-      }
+        .photo-info p {
+            margin: 0 0 25px;
+            color: #bbb;
+            font-size: 14px;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+        }
 
-      .photo-info {
-        flex: 0 0 auto;
-        width: 100%;
-        max-width: 600px;
-        max-height: 30%;
-      }
+        .photo-info h3 {
+            margin: 0 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #444;
+            font-size: 16px;
+            font-weight: 500;
+        }
 
-      .photo-info h3 {
-        font-size: 18px;
-        margin-bottom: 5px;
-      }
+        #exifDetails {
+            margin: 0;
+            padding: 0;
+        }
 
-      .photo-info p {
-        margin-bottom: 8px;
-      }
+        #exifDetails > div {
+            margin-bottom: 13px;
+        }
 
-      .exif-row {
-        display: inline-block;
-        margin-right: 10px;
-        border: 0;
-      }
-    }
+        #exifDetails dt {
+            margin-bottom: 3px;
+            color: #aaa;
+            font-size: 12px;
+            font-weight: 400;
+        }
 
-    @media (max-width: 480px) {
-      .photo-gallery {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
+        #exifDetails dd {
+            margin: 0;
+            color: #fff;
+            font-size: 13px;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
 
-      .section-header {
-        font-size: 22px;
-      }
+        .lightbox-close,
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            color: #fff;
+            background: rgba(40, 40, 40, 0.7);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
 
-      .section-subtext {
-        font-size: 15px;
-      }
+        .lightbox-close:hover,
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background: rgba(100, 100, 100, 0.8);
+        }
 
-      .gallery-pagination {
-        gap: 5px;
-      }
+        .lightbox-close {
+            top: 15px;
+            right: 15px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 28px;
+        }
 
-      .gallery-pagination button {
-        min-width: 36px;
-        height: 38px;
-        padding: 0 9px;
-      }
+        .lightbox-prev,
+        .lightbox-next {
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 60px;
+            border-radius: 4px;
+            font-size: 28px;
+        }
 
-      #photoLightbox.photo-lightbox {
-        padding: 48px 34px 12px;
-      }
+        .lightbox-prev {
+            left: 10px;
+        }
 
-      .lightbox-close {
-        top: 5px;
-        right: 7px;
-      }
+        .lightbox-next {
+            right: 10px;
+        }
 
-      .lightbox-nav {
-        width: 30px;
-        height: 44px;
-        font-size: 20px;
-      }
-    }
-  </style>
+        /* Footer */
+
+        .site-footer {
+            padding: 25px 15px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .site-footer a {
+            color: #555;
+        }
+
+        /* Tablet */
+
+        @media (max-width: 900px) {
+            .photo-gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 25px 18px;
+            }
+
+            .photo-link img {
+                height: 240px;
+            }
+
+            .lightbox-content {
+                gap: 15px;
+            }
+
+            .photo-info {
+                flex-basis: 220px;
+            }
+        }
+
+        /* Mobile */
+
+        @media (max-width: 600px) {
+            .site-header {
+                padding-top: 30px;
+            }
+
+            .site-header h1 {
+                font-size: 26px;
+            }
+
+            .gallery-container {
+                width: 92%;
+            }
+
+            .photo-gallery {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .photo-link img {
+                height: auto;
+                max-height: 400px;
+                object-fit: contain;
+            }
+
+            #photoLightbox.photo-lightbox {
+                padding: 55px 12px 15px;
+                overflow-y: auto;
+                align-items: flex-start;
+            }
+
+            .lightbox-content {
+                height: auto;
+                min-height: 100%;
+                flex-direction: column;
+                gap: 15px;
+                padding-bottom: 20px;
+            }
+
+            .lightbox-image-container {
+                flex: 0 0 auto;
+                width: 100%;
+                min-height: 35vh;
+                height: auto;
+            }
+
+            #lightboxImage {
+                max-width: 100%;
+                max-height: 55vh;
+            }
+
+            .photo-info {
+                flex: 0 0 auto;
+                width: 100%;
+                max-height: none;
+                padding: 10px 15px;
+            }
+
+            .lightbox-prev,
+            .lightbox-next {
+                position: fixed;
+                top: 28vh;
+                width: 38px;
+                height: 50px;
+            }
+
+            .lightbox-prev {
+                left: 5px;
+            }
+
+            .lightbox-next {
+                right: 5px;
+            }
+
+            .lightbox-close {
+                position: fixed;
+                top: 8px;
+                right: 8px;
+            }
+        }
+    </style>
 </head>
 
-<body id="top">
+<body>
 
-  <!-- Header -->
-  <header class="d-print-none">
-    <div class="container text-center text-lg-left">
-      <div class="py-3 clearfix">
-        <h1 class="site-title mb-0">Matt Mirhosseini</h1>
+    <header class="site-header">
+        <h1>My Birding Photo Collection</h1>
+        <p>A collection of my bird photography.</p>
+        <a class="back-link" href="index.html">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            Back to Home
+        </a>
+    </header>
 
-        <div class="site-nav">
-          <nav role="navigation">
-            <ul class="nav justify-content-center">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
-              </li>
+    <main class="gallery-container">
+        <h2 class="gallery-heading">Birding</h2>
 
-              <li class="nav-item">
-                <a class="nav-link" href="MyArt.html">My Photography</a>
-              </li>
+        <section class="photo-gallery" aria-label="Bird photography gallery">
 
-              <li class="nav-item">
-                <a class="nav-link" href="nature.html">My Nature &amp; Wildlife Gallery</a>
-              </li>
+            <!-- Photos are displayed in descending order -->
 
-              <li class="nav-item">
-                <a class="nav-link" href="https://twitter.com/matmirhosseini" title="Twitter">
-                  <i class="fab fa-twitter"></i>
-                  <span class="sr-only">Twitter</span>
+            <figure class="photo-card">
+                <a href="images/birding28.jpg" class="photo-link" data-description="Birding photograph 28">
+                    <img src="images/birding28.jpg" alt="Birding photo 28" loading="lazy">
                 </a>
-              </li>
+                <figcaption class="photo-caption">birding28</figcaption>
+            </figure>
 
-              <li class="nav-item">
-                <a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook">
-                  <i class="fab fa-facebook"></i>
-                  <span class="sr-only">Facebook</span>
+            <figure class="photo-card">
+                <a href="images/birding27.jpg" class="photo-link" data-description="Birding photograph 27">
+                    <img src="images/birding27.jpg" alt="Birding photo 27" loading="lazy">
                 </a>
-              </li>
+                <figcaption class="photo-caption">birding27</figcaption>
+            </figure>
 
-              <li class="nav-item">
-                <a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram">
-                  <i class="fab fa-instagram"></i>
-                  <span class="sr-only">Instagram</span>
+            <figure class="photo-card">
+                <a href="images/birding26.jpg" class="photo-link" data-description="Birding photograph 26">
+                    <img src="images/birding26.jpg" alt="Birding photo 26" loading="lazy">
                 </a>
-              </li>
+                <figcaption class="photo-caption">birding26</figcaption>
+            </figure>
 
-              <li class="nav-item">
-                <a class="nav-link" href="https://github.com/mattmirhosseini" title="GitHub">
-                  <i class="fab fa-github"></i>
-                  <span class="sr-only">GitHub</span>
+            <figure class="photo-card">
+                <a href="images/birding25.jpg" class="photo-link" data-description="Birding photograph 25">
+                    <img src="images/birding25.jpg" alt="Birding photo 25" loading="lazy">
                 </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main gallery -->
-  <div class="page-content">
-    <div class="container">
-      <div class="cover shadow-lg bg-white">
-
-        <div class="section-divider"></div>
-
-        <section class="gallery-section px-3 px-lg-4 pb-4">
-          <h3 class="section-header">My Birding Photo Collection</h3>
-
-          <p class="section-subtext">
-            A collection of my bird photography.
-          </p>
-
-          <div class="photo-gallery">
-
-            <!-- Photos are ordered from 28 down to 1. -->
-
-            <figure class="photo-card">
-              <a href="images/birding28.jpg" class="lightbox-trigger">
-                <img src="images/birding28.jpg" alt="Birding photo 28" loading="lazy">
-              </a>
-              <figcaption>birding28</figcaption>
+                <figcaption class="photo-caption">birding25</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding27.jpg" class="lightbox-trigger">
-                <img src="images/birding27.jpg" alt="Birding photo 27" loading="lazy">
-              </a>
-              <figcaption>birding27</figcaption>
+                <a href="images/birding24.jpg" class="photo-link" data-description="Birding photograph 24">
+                    <img src="images/birding24.jpg" alt="Birding photo 24" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding24</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding26.jpg" class="lightbox-trigger">
-                <img src="images/birding26.jpg" alt="Birding photo 26" loading="lazy">
-              </a>
-              <figcaption>birding26</figcaption>
+                <a href="images/birding23.jpg" class="photo-link" data-description="Birding photograph 23">
+                    <img src="images/birding23.jpg" alt="Birding photo 23" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding23</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding25.jpg" class="lightbox-trigger">
-                <img src="images/birding25.jpg" alt="Birding photo 25" loading="lazy">
-              </a>
-              <figcaption>birding25</figcaption>
+                <a href="images/birding22.jpg" class="photo-link" data-description="Birding photograph 22">
+                    <img src="images/birding22.jpg" alt="Birding photo 22" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding22</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding24.jpg" class="lightbox-trigger">
-                <img src="images/birding24.jpg" alt="Birding photo 24" loading="lazy">
-              </a>
-              <figcaption>birding24</figcaption>
+                <a href="images/birding21.jpg" class="photo-link" data-description="Birding photograph 21">
+                    <img src="images/birding21.jpg" alt="Birding photo 21" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding21</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding23.jpg" class="lightbox-trigger">
-                <img src="images/birding23.jpg" alt="Birding photo 23" loading="lazy">
-              </a>
-              <figcaption>birding23</figcaption>
+                <a href="images/birding20.jpg" class="photo-link" data-description="Birding photograph 20">
+                    <img src="images/birding20.jpg" alt="Birding photo 20" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding20</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding22.jpg" class="lightbox-trigger">
-                <img src="images/birding22.jpg" alt="Birding photo 22" loading="lazy">
-              </a>
-              <figcaption>birding22</figcaption>
+                <a href="images/birding19.jpg" class="photo-link" data-description="Birding photograph 19">
+                    <img src="images/birding19.jpg" alt="Birding photo 19" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding19</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding21.jpg" class="lightbox-trigger">
-                <img src="images/birding21.jpg" alt="Birding photo 21" loading="lazy">
-              </a>
-              <figcaption>birding21</figcaption>
+                <a href="images/birding18.jpg" class="photo-link" data-description="Birding photograph 18">
+                    <img src="images/birding18.jpg" alt="Birding photo 18" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding18</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding20.jpg" class="lightbox-trigger">
-                <img src="images/birding20.jpg" alt="Birding photo 20" loading="lazy">
-              </a>
-              <figcaption>birding20</figcaption>
+                <a href="images/birding17.jpg" class="photo-link" data-description="Birding photograph 17">
+                    <img src="images/birding17.jpg" alt="Birding photo 17" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding17</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding19.jpg" class="lightbox-trigger">
-                <img src="images/birding19.jpg" alt="Birding photo 19" loading="lazy">
-              </a>
-              <figcaption>birding19</figcaption>
+                <a href="images/birding16.jpg" class="photo-link" data-description="Birding photograph 16">
+                    <img src="images/birding16.jpg" alt="Birding photo 16" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding16</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding18.jpg" class="lightbox-trigger">
-                <img src="images/birding18.jpg" alt="Birding photo 18" loading="lazy">
-              </a>
-              <figcaption>birding18</figcaption>
+                <a href="images/birding15.jpg" class="photo-link" data-description="Birding photograph 15">
+                    <img src="images/birding15.jpg" alt="Birding photo 15" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding15</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding17.jpg" class="lightbox-trigger">
-                <img src="images/birding17.jpg" alt="Birding photo 17" loading="lazy">
-              </a>
-              <figcaption>birding17</figcaption>
+                <a href="images/birding14.jpg" class="photo-link" data-description="Birding photograph 14">
+                    <img src="images/birding14.jpg" alt="Birding photo 14" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding14</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding16.jpg" class="lightbox-trigger">
-                <img src="images/birding16.jpg" alt="Birding photo 16" loading="lazy">
-              </a>
-              <figcaption>birding16</figcaption>
+                <a href="images/birding13.jpg" class="photo-link" data-description="Birding photograph 13">
+                    <img src="images/birding13.jpg" alt="Birding photo 13" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding13</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding15.jpg" class="lightbox-trigger">
-                <img src="images/birding15.jpg" alt="Birding photo 15" loading="lazy">
-              </a>
-              <figcaption>birding15</figcaption>
+                <a href="images/birding12.jpg" class="photo-link" data-description="Birding photograph 12">
+                    <img src="images/birding12.jpg" alt="Birding photo 12" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding12</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding14.jpg" class="lightbox-trigger">
-                <img src="images/birding14.jpg" alt="Birding photo 14" loading="lazy">
-              </a>
-              <figcaption>birding14</figcaption>
+                <a href="images/birding11.jpg" class="photo-link" data-description="Birding photograph 11">
+                    <img src="images/birding11.jpg" alt="Birding photo 11" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding11</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding13.jpg" class="lightbox-trigger">
-                <img src="images/birding13.jpg" alt="Birding photo 13" loading="lazy">
-              </a>
-              <figcaption>birding13</figcaption>
+                <a href="images/birding10.jpg" class="photo-link" data-description="Birding photograph 10">
+                    <img src="images/birding10.jpg" alt="Birding photo 10" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding10</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding12.jpg" class="lightbox-trigger">
-                <img src="images/birding12.jpg" alt="Birding photo 12" loading="lazy">
-              </a>
-              <figcaption>birding12</figcaption>
+                <a href="images/birding09.jpg" class="photo-link" data-description="Birding photograph 9">
+                    <img src="images/birding09.jpg" alt="Birding photo 9" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding9</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding11.jpg" class="lightbox-trigger">
-                <img src="images/birding11.jpg" alt="Birding photo 11" loading="lazy">
-              </a>
-              <figcaption>birding11</figcaption>
+                <a href="images/birding08.jpg" class="photo-link" data-description="Birding photograph 8">
+                    <img src="images/birding08.jpg" alt="Birding photo 8" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding8</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding10.jpg" class="lightbox-trigger">
-                <img src="images/birding10.jpg" alt="Birding photo 10" loading="lazy">
-              </a>
-              <figcaption>birding10</figcaption>
+                <a href="images/birding07.jpg" class="photo-link" data-description="Birding photograph 7">
+                    <img src="images/birding07.jpg" alt="Birding photo 7" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding7</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding09.jpg" class="lightbox-trigger">
-                <img src="images/birding09.jpg" alt="Birding photo 9" loading="lazy">
-              </a>
-              <figcaption>birding9</figcaption>
+                <a href="images/birding06.jpg" class="photo-link" data-description="Birding photograph 6">
+                    <img src="images/birding06.jpg" alt="Birding photo 6" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding6</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding08.jpg" class="lightbox-trigger">
-                <img src="images/birding08.jpg" alt="Birding photo 8" loading="lazy">
-              </a>
-              <figcaption>birding8</figcaption>
+                <a href="images/birding05.jpg" class="photo-link" data-description="Birding photograph 5">
+                    <img src="images/birding05.jpg" alt="Birding photo 5" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding5</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding07.jpg" class="lightbox-trigger">
-                <img src="images/birding07.jpg" alt="Birding photo 7" loading="lazy">
-              </a>
-              <figcaption>birding7</figcaption>
+                <a href="images/birding04.jpg" class="photo-link" data-description="Birding photograph 4">
+                    <img src="images/birding04.jpg" alt="Birding photo 4" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding4</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding06.jpg" class="lightbox-trigger">
-                <img src="images/birding06.jpg" alt="Birding photo 6" loading="lazy">
-              </a>
-              <figcaption>birding6</figcaption>
+                <a href="images/birding03.jpg" class="photo-link" data-description="Birding photograph 3">
+                    <img src="images/birding03.jpg" alt="Birding photo 3" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding3</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding05.jpg" class="lightbox-trigger">
-                <img src="images/birding05.jpg" alt="Birding photo 5" loading="lazy">
-              </a>
-              <figcaption>birding5</figcaption>
+                <a href="images/birding02.jpg" class="photo-link" data-description="Birding photograph 2">
+                    <img src="images/birding02.jpg" alt="Birding photo 2" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding2</figcaption>
             </figure>
 
             <figure class="photo-card">
-              <a href="images/birding04.jpg" class="lightbox-trigger">
-                <img src="images/birding04.jpg" alt="Birding photo 4" loading="lazy">
-              </a>
-              <figcaption>birding4</figcaption>
+                <a href="images/birding01.jpg" class="photo-link" data-description="Birding photograph 1">
+                    <img src="images/birding01.jpg" alt="Birding photo 1" loading="lazy">
+                </a>
+                <figcaption class="photo-caption">birding1</figcaption>
             </figure>
 
-            <figure class="photo-card">
-              <a href="images/birding03.jpg" class="lightbox-trigger">
-                <img src="images/birding03.jpg" alt="Birding photo 3" loading="lazy">
-              </a>
-              <figcaption>birding3</figcaption>
-            </figure>
-
-            <figure class="photo-card">
-              <a href="images/birding02.jpg" class="lightbox-trigger">
-                <img src="images/birding02.jpg" alt="Birding photo 2" loading="lazy">
-              </a>
-              <figcaption>birding2</figcaption>
-            </figure>
-
-            <figure class="photo-card">
-              <a href="images/birding01.jpg" class="lightbox-trigger">
-                <img src="images/birding01.jpg" alt="Birding photo 1" loading="lazy">
-              </a>
-              <figcaption>birding1</figcaption>
-            </figure>
-
-          </div>
-
-          <!-- Pagination -->
-          <div class="gallery-page-info"
-               id="galleryPageInfo"
-               aria-live="polite"></div>
-
-          <nav class="gallery-pagination"
-               id="galleryPagination"
-               aria-label="Gallery pages"></nav>
         </section>
-      </div>
-    </div>
-  </div>
 
-  <!-- Footer -->
-  <footer class="pt-4 pb-4 text-muted text-center d-print-none">
-    <div class="container">
-      <div class="my-3">
-        <div class="h4">Matt Mirhosseini</div>
+        <nav class="pagination-wrapper" aria-label="Gallery pagination">
+            <div id="paginationInfo" class="pagination-info" aria-live="polite"></div>
+            <div id="paginationControls" class="pagination"></div>
+        </nav>
+    </main>
 
-        <div class="footer-nav">
-          <nav role="navigation">
-            <ul class="nav justify-content-center">
-              <li class="nav-item">
-                <a class="nav-link" href="https://twitter.com/matmirhosseini" title="Twitter">
-                  <i class="fab fa-twitter"></i>
-                  <span class="sr-only">Twitter</span>
-                </a>
-              </li>
+    <!-- Fullscreen image viewer -->
 
-              <li class="nav-item">
-                <a class="nav-link" href="https://www.facebook.com/profile.php?id=61568136706109" title="Facebook">
-                  <i class="fab fa-facebook"></i>
-                  <span class="sr-only">Facebook</span>
-                </a>
-              </li>
+    <div
+        id="photoLightbox"
+        class="photo-lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Bird photograph viewer"
+        aria-hidden="true"
+    >
+        <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close viewer">
+            &times;
+        </button>
 
-              <li class="nav-item">
-                <a class="nav-link" href="https://www.instagram.com/mhmdmirhosseini" title="Instagram">
-                  <i class="fab fa-instagram"></i>
-                  <span class="sr-only">Instagram</span>
-                </a>
-              </li>
+        <button type="button" class="lightbox-prev" id="lightboxPrev" aria-label="Previous photograph">
+            &#10094;
+        </button>
 
-              <li class="nav-item">
-                <a class="nav-link" href="https://github.com/mattmirhosseini" title="GitHub">
-                  <i class="fab fa-github"></i>
-                  <span class="sr-only">GitHub</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+        <button type="button" class="lightbox-next" id="lightboxNext" aria-label="Next photograph">
+            &#10095;
+        </button>
+
+        <div class="lightbox-content">
+            <div class="lightbox-image-container">
+                <img id="lightboxImage" src="" alt="">
+            </div>
+
+            <aside class="photo-info">
+                <h2 id="lightboxTitle">Bird photograph</h2>
+                <p id="lightboxDescription"></p>
+
+                <h3>Photo information</h3>
+                <dl id="exifDetails"></dl>
+            </aside>
         </div>
-      </div>
-
-      <div class="text-small">
-        <div class="mb-1">&copy; All rights reserved.</div>
-        <div>
-          Design -
-          <a href="https://templateflip.com/" target="_blank" rel="noopener">TemplateFlip</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Lightbox -->
-  <div class="photo-lightbox"
-       id="photoLightbox"
-       aria-hidden="true"
-       role="dialog"
-       aria-modal="true"
-       aria-label="Photo viewer">
-
-    <button class="lightbox-close"
-            id="lightboxClose"
-            type="button"
-            aria-label="Close">&times;</button>
-
-    <button class="lightbox-nav lightbox-prev"
-            id="lightboxPrev"
-            type="button"
-            aria-label="Previous photo">&#10094;</button>
-
-    <div class="lightbox-content">
-      <div class="lightbox-image-wrap">
-        <img id="lightboxImage" alt="">
-      </div>
-
-      <div class="photo-info">
-        <h3 id="photoTitle"></h3>
-        <p id="photoDescription"></p>
-        <div id="exifDetails"></div>
-      </div>
     </div>
 
-    <button class="lightbox-nav lightbox-next"
-            id="lightboxNext"
-            type="button"
-            aria-label="Next photo">&#10095;</button>
-  </div>
+    <footer class="site-footer">
+        <p>
+            &copy; <span id="currentYear"></span>
+            Matt Mirhosseini. All rights reserved.
+        </p>
+        <p>
+            <a href="index.html">Home</a>
+        </p>
+    </footer>
 
-  <!-- EXIF reader -->
-  <script src="https://cdn.jsdelivr.net/npm/exif-js@2.3.0/build/exif.js"></script>
+    <!-- EXIF library, using the same approach as the working Nature gallery -->
+    <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
 
-  <script>
-    (function () {
-      "use strict";
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const gallery = document.querySelector(".photo-gallery");
+            const cards = Array.from(document.querySelectorAll(".photo-gallery .photo-card"));
+            const links = Array.from(document.querySelectorAll(".photo-gallery .photo-link"));
 
-      function initializeBirdingGallery() {
-        const cards = Array.from(
-          document.querySelectorAll(".photo-gallery .photo-card")
-        );
+            const viewer = document.getElementById("photoLightbox");
+            const viewerImage = document.getElementById("lightboxImage");
+            const title = document.getElementById("lightboxTitle");
+            const description = document.getElementById("lightboxDescription");
+            const details = document.getElementById("exifDetails");
 
-        const links = cards
-          .map(card => card.querySelector(".lightbox-trigger"))
-          .filter(Boolean);
+            const closeButton = document.getElementById("lightboxClose");
+            const prevButton = document.getElementById("lightboxPrev");
+            const nextButton = document.getElementById("lightboxNext");
 
-        const viewer = document.getElementById("photoLightbox");
-        const viewerImage = document.getElementById("lightboxImage");
-        const title = document.getElementById("photoTitle");
-        const description = document.getElementById("photoDescription");
-        const details = document.getElementById("exifDetails");
-        const pagination = document.getElementById("galleryPagination");
-        const pageInfo = document.getElementById("galleryPageInfo");
+            const paginationInfo = document.getElementById("paginationInfo");
+            const paginationControls = document.getElementById("paginationControls");
 
-        const closeButton = document.getElementById("lightboxClose");
-        const prevButton = document.getElementById("lightboxPrev");
-        const nextButton = document.getElementById("lightboxNext");
+            const photosPerPage = 9;
+            const totalPhotos = cards.length;
+            const totalPages = Math.ceil(totalPhotos / photosPerPage);
 
-        if (
-          !cards.length || !links.length || !viewer || !viewerImage ||
-          !title || !description || !details || !pagination || !pageInfo ||
-          !closeButton || !prevButton || !nextButton
-        ) {
-          console.error("Birding gallery: required HTML elements are missing.");
-          return;
-        }
+            let currentPage = 1;
+            let currentIndex = 0;
+            let requestId = 0;
 
-        const photosPerPage = 9;
+            document.getElementById("currentYear").textContent =
+                new Date().getFullYear();
 
-        let currentPage = 1;
-        let currentIndex = 0;
-        let requestId = 0;
-        let visibleLinks = [];
-        let lastFocusedElement = null;
+            /*
+             * Pagination
+             */
 
-        // PAGINATION
-        function showPage(page, scrollToGallery = true) {
-          const totalPages = Math.max(
-            1,
-            Math.ceil(cards.length / photosPerPage)
-          );
+            function showPage(page, scrollToGallery = true) {
+                currentPage = Math.max(1, Math.min(page, totalPages));
 
-          currentPage = Math.max(1, Math.min(page, totalPages));
+                const startIndex = (currentPage - 1) * photosPerPage;
+                const endIndex = Math.min(
+                    startIndex + photosPerPage,
+                    totalPhotos
+                );
 
-          const start = (currentPage - 1) * photosPerPage;
-          const end = Math.min(start + photosPerPage, cards.length);
+                cards.forEach(function (card, index) {
+                    card.hidden = index < startIndex || index >= endIndex;
+                });
 
-          cards.forEach((card, index) => {
-            card.hidden = index < start || index >= end;
-          });
+                paginationInfo.textContent =
+                    "Showing " +
+                    (startIndex + 1) +
+                    "–" +
+                    endIndex +
+                    " of " +
+                    totalPhotos +
+                    " photos";
 
-          visibleLinks = links.slice(start, end);
+                renderPagination();
 
-          pageInfo.textContent = cards.length
-            ? `Showing ${start + 1}–${end} of ${cards.length} photos`
-            : "No photos available.";
-
-          renderPagination(totalPages);
-
-          if (scrollToGallery) {
-            document.querySelector(".gallery-section").scrollIntoView({
-              behavior: "smooth",
-              block: "start"
-            });
-          }
-        }
-
-        function renderPagination(totalPages) {
-          pagination.replaceChildren();
-
-          function addButton(label, page, disabled = false, active = false) {
-            const button = document.createElement("button");
-
-            button.type = "button";
-            button.textContent = label;
-            button.disabled = disabled;
-
-            if (active) {
-              button.classList.add("active");
-              button.setAttribute("aria-current", "page");
+                if (scrollToGallery) {
+                    gallery.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
             }
 
-            button.addEventListener("click", function () {
-              showPage(page);
+            function renderPagination() {
+                paginationControls.replaceChildren();
+
+                const previousButton = document.createElement("button");
+                previousButton.type = "button";
+                previousButton.textContent = "Previous";
+                previousButton.disabled = currentPage === 1;
+                previousButton.setAttribute("aria-label", "Previous page");
+
+                previousButton.addEventListener("click", function () {
+                    if (currentPage > 1) {
+                        showPage(currentPage - 1);
+                    }
+                });
+
+                paginationControls.appendChild(previousButton);
+
+                for (let page = 1; page <= totalPages; page++) {
+                    const pageButton = document.createElement("button");
+                    pageButton.type = "button";
+                    pageButton.textContent = page;
+
+                    if (page === currentPage) {
+                        pageButton.classList.add("active");
+                        pageButton.setAttribute("aria-current", "page");
+                    }
+
+                    pageButton.setAttribute("aria-label", "Page " + page);
+
+                    pageButton.addEventListener("click", function () {
+                        showPage(page);
+                    });
+
+                    paginationControls.appendChild(pageButton);
+                }
+
+                const nextButton = document.createElement("button");
+                nextButton.type = "button";
+                nextButton.textContent = "Next";
+                nextButton.disabled = currentPage === totalPages;
+                nextButton.setAttribute("aria-label", "Next page");
+
+                nextButton.addEventListener("click", function () {
+                    if (currentPage < totalPages) {
+                        showPage(currentPage + 1);
+                    }
+                });
+
+                paginationControls.appendChild(nextButton);
+            }
+
+            /*
+             * EXIF information helpers
+             */
+
+            function addRow(label, value) {
+                if (
+                    value === undefined ||
+                    value === null ||
+                    value === ""
+                ) {
+                    return;
+                }
+
+                const row = document.createElement("div");
+                const term = document.createElement("dt");
+                const valueElement = document.createElement("dd");
+
+                term.textContent = label;
+                valueElement.textContent = String(value);
+
+                row.appendChild(term);
+                row.appendChild(valueElement);
+                details.appendChild(row);
+            }
+
+            function formatExposureTime(value) {
+                const seconds = Number(value);
+
+                if (!Number.isFinite(seconds) || seconds <= 0) {
+                    return value;
+                }
+
+                if (seconds < 1) {
+                    const denominator = Math.round(1 / seconds);
+
+                    if (denominator > 0) {
+                        return "1/" + denominator + " s";
+                    }
+                }
+
+                return seconds + " s";
+            }
+
+            function formatFocalLength(value) {
+                if (value && typeof value === "object" && "numerator" in value) {
+                    const denominator = Number(value.denominator) || 1;
+                    return (Number(value.numerator) / denominator) + " mm";
+                }
+
+                return value + " mm";
+            }
+
+            function renderExif(image, id) {
+                if (id !== requestId) {
+                    return;
+                }
+
+                details.replaceChildren();
+
+                addRow(
+                    "Dimensions",
+                    image.naturalWidth + " × " + image.naturalHeight + " px"
+                );
+
+                if (typeof EXIF === "undefined") {
+                    addRow("Metadata", "EXIF library could not be loaded.");
+                    return;
+                }
+
+                try {
+                    EXIF.getData(image, function () {
+                        if (id !== requestId) {
+                            return;
+                        }
+
+                        function getTag(tag) {
+                            return EXIF.getTag(this, tag);
+                        }
+
+                        const camera = getTag.call(this, "Model");
+                        const lens = getTag.call(this, "LensModel");
+                        const iso = getTag.call(this, "ISOSpeedRatings");
+                        const aperture = getTag.call(this, "FNumber");
+                        const exposure = getTag.call(this, "ExposureTime");
+                        const focalLength = getTag.call(this, "FocalLength");
+                        const dateTaken = getTag.call(this, "DateTimeOriginal");
+                        const exposureBias = getTag.call(this, "ExposureBias");
+
+                        addRow("Camera", camera);
+                        addRow("Lens", lens);
+
+                        if (Array.isArray(iso)) {
+                            addRow("ISO", iso.join(", "));
+                        } else {
+                            addRow("ISO", iso);
+                        }
+
+                        if (aperture !== undefined && aperture !== null) {
+                            addRow("Aperture", "f/" + aperture);
+                        }
+
+                        if (exposure !== undefined && exposure !== null) {
+                            addRow(
+                                "Shutter speed",
+                                formatExposureTime(exposure)
+                            );
+                        }
+
+                        if (
+                            focalLength !== undefined &&
+                            focalLength !== null
+                        ) {
+                            addRow(
+                                "Focal length",
+                                formatFocalLength(focalLength)
+                            );
+                        }
+
+                        addRow("Date taken", dateTaken);
+                        addRow("Exposure compensation", exposureBias);
+
+                        if (details.children.length === 1) {
+                            addRow(
+                                "Metadata",
+                                "No additional EXIF camera data found."
+                            );
+                        }
+                    });
+                } catch (error) {
+                    if (id === requestId) {
+                        addRow("Metadata", "Could not read EXIF data.");
+                    }
+                }
+            }
+
+            /*
+             * Open a photograph and read its EXIF data.
+             * A separate Image object is used for EXIF, as in the
+             * working Nature gallery implementation.
+             */
+
+            function openPhoto(index) {
+                if (!links.length) {
+                    return;
+                }
+
+                currentIndex = (index + links.length) % links.length;
+
+                const link = links[currentIndex];
+                const thumbnail = link.querySelector("img");
+                const photoUrl = link.href;
+                const id = ++requestId;
+
+                title.textContent = thumbnail.alt || "Bird photograph";
+                description.textContent =
+                    link.dataset.description || "";
+
+                details.replaceChildren();
+                addRow("Metadata", "Loading camera information…");
+
+                viewer.classList.add("open");
+                viewer.setAttribute("aria-hidden", "false");
+                document.body.style.overflow = "hidden";
+
+                viewerImage.onload = function () {
+                    if (id !== requestId) {
+                        return;
+                    }
+
+                    viewerImage.alt = thumbnail.alt || "Bird photograph";
+                };
+
+                viewerImage.onerror = function () {
+                    if (id !== requestId) {
+                        return;
+                    }
+
+                    details.replaceChildren();
+                    addRow("Metadata", "Could not load this photograph.");
+                };
+
+                viewerImage.src = photoUrl;
+                viewerImage.alt = thumbnail.alt || "Bird photograph";
+
+                const metadataImage = new Image();
+
+                metadataImage.onload = function () {
+                    if (id !== requestId) {
+                        return;
+                    }
+
+                    renderExif(metadataImage, id);
+                };
+
+                metadataImage.onerror = function () {
+                    if (id !== requestId) {
+                        return;
+                    }
+
+                    details.replaceChildren();
+                    addRow("Metadata", "Could not read this image.");
+                };
+
+                metadataImage.src = photoUrl;
+            }
+
+            function closePhoto() {
+                requestId++;
+
+                viewer.classList.remove("open");
+                viewer.setAttribute("aria-hidden", "true");
+                document.body.style.overflow = "";
+
+                viewerImage.removeAttribute("src");
+            }
+
+            /*
+             * Gallery click handlers
+             */
+
+            links.forEach(function (link, index) {
+                link.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    openPhoto(index);
+                });
             });
 
-            pagination.appendChild(button);
-          }
+            closeButton.addEventListener("click", closePhoto);
 
-          addButton("Previous", currentPage - 1, currentPage === 1);
-
-          for (let page = 1; page <= totalPages; page++) {
-            addButton(
-              String(page),
-              page,
-              false,
-              page === currentPage
-            );
-          }
-
-          addButton("Next", currentPage + 1, currentPage === totalPages);
-        }
-
-        // EXIF METADATA
-        function addRow(label, value) {
-          if (value === undefined || value === null || value === "") {
-            return;
-          }
-
-          const row = document.createElement("div");
-          row.className = "exif-row";
-
-          const labelElement = document.createElement("strong");
-          labelElement.textContent = label + ": ";
-
-          const valueElement = document.createElement("span");
-
-          if (typeof value === "object" && value.numerator !== undefined) {
-            value = value.numerator / (value.denominator || 1);
-          }
-
-          valueElement.textContent = String(value);
-          row.append(labelElement, valueElement);
-          details.appendChild(row);
-        }
-
-        function rationalValue(value) {
-          if (
-            value &&
-            typeof value === "object" &&
-            value.numerator !== undefined
-          ) {
-            return value.numerator / (value.denominator || 1);
-          }
-
-          return value;
-        }
-
-        function loadExif(image, id) {
-          if (id !== requestId) return;
-
-          details.replaceChildren();
-
-          addRow(
-            "Dimensions",
-            `${image.naturalWidth} × ${image.naturalHeight} px`
-          );
-
-          if (typeof EXIF === "undefined") {
-            addRow("Metadata", "EXIF reader unavailable");
-            return;
-          }
-
-          try {
-            EXIF.getData(image, function () {
-              if (id !== requestId) return;
-
-              const get = tag => EXIF.getTag(this, tag);
-
-              addRow("Camera", get("Model"));
-              addRow("Lens", get("LensModel"));
-
-              const iso = get("ISOSpeedRatings");
-              addRow("ISO", Array.isArray(iso) ? iso.join(", ") : iso);
-
-              const aperture = rationalValue(get("FNumber"));
-              if (aperture != null) {
-                addRow("Aperture", "f/" + aperture);
-              }
-
-              const exposure = rationalValue(get("ExposureTime"));
-              if (exposure != null && Number(exposure) > 0) {
-                const seconds = Number(exposure);
-
-                const shutter = seconds < 1
-                  ? `1/${Math.round(1 / seconds)} s`
-                  : `${seconds} s`;
-
-                addRow("Shutter speed", shutter);
-              }
-
-              const focal = rationalValue(get("FocalLength"));
-              if (focal != null) {
-                addRow("Focal length", focal + " mm");
-              }
-
-              addRow("Date taken", get("DateTimeOriginal"));
-              addRow("Exposure compensation", get("ExposureBias"));
-
-              if (details.children.length === 1) {
-                addRow("Metadata", "No EXIF camera data found");
-              }
+            prevButton.addEventListener("click", function () {
+                openPhoto(currentIndex - 1);
             });
-          } catch (error) {
-            if (id === requestId) {
-              addRow("Metadata", "Could not read EXIF data");
-            }
-          }
-        }
 
-        // LIGHTBOX
-        function openPhoto(index) {
-          if (!visibleLinks.length) return;
+            nextButton.addEventListener("click", function () {
+                openPhoto(currentIndex + 1);
+            });
 
-          currentIndex = (index + visibleLinks.length) % visibleLinks.length;
+            viewer.addEventListener("click", function (event) {
+                if (event.target === viewer) {
+                    closePhoto();
+                }
+            });
 
-          const link = visibleLinks[currentIndex];
-          const thumbnail = link.querySelector("img");
-          const card = link.closest(".photo-card");
-          const caption = card.querySelector("figcaption");
-          const photoUrl = link.href;
-          const id = ++requestId;
+            document.addEventListener("keydown", function (event) {
+                if (!viewer.classList.contains("open")) {
+                    return;
+                }
 
-          if (!viewer.classList.contains("is-open")) {
-            lastFocusedElement = document.activeElement;
-          }
+                if (event.key === "Escape") {
+                    closePhoto();
+                } else if (event.key === "ArrowLeft") {
+                    openPhoto(currentIndex - 1);
+                } else if (event.key === "ArrowRight") {
+                    openPhoto(currentIndex + 1);
+                }
+            });
 
-          title.textContent =
-            caption?.textContent.trim() ||
-            thumbnail.alt ||
-            "Bird photograph";
+            /*
+             * Start on page 1.
+             */
 
-          description.textContent = link.dataset.description || "";
-          details.replaceChildren();
-
-          viewerImage.alt = thumbnail.alt || title.textContent;
-          viewerImage.src = photoUrl;
-
-          viewer.classList.add("is-open");
-          viewer.setAttribute("aria-hidden", "false");
-          document.body.style.overflow = "hidden";
-
-          const metadataImage = new Image();
-
-          metadataImage.onload = function () {
-            loadExif(metadataImage, id);
-          };
-
-          metadataImage.onerror = function () {
-            if (id !== requestId) return;
-
-            details.replaceChildren();
-            addRow("Metadata", "Could not load image metadata");
-          };
-
-          metadataImage.src = photoUrl;
-        }
-
-        function closePhoto() {
-          requestId++;
-
-          viewer.classList.remove("is-open");
-          viewer.setAttribute("aria-hidden", "true");
-
-          viewerImage.removeAttribute("src");
-          document.body.style.overflow = "";
-
-          if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
-            lastFocusedElement.focus();
-          }
-        }
-
-        links.forEach(function (link) {
-          link.addEventListener("click", function (event) {
-            event.preventDefault();
-
-            const index = visibleLinks.indexOf(link);
-
-            if (index !== -1) {
-              openPhoto(index);
-            }
-          });
+            showPage(1, false);
         });
-
-        closeButton.addEventListener("click", closePhoto);
-
-        prevButton.addEventListener("click", function () {
-          openPhoto(currentIndex - 1);
-        });
-
-        nextButton.addEventListener("click", function () {
-          openPhoto(currentIndex + 1);
-        });
-
-        viewer.addEventListener("click", function (event) {
-          if (event.target === viewer) {
-            closePhoto();
-          }
-        });
-
-        document.addEventListener("keydown", function (event) {
-          if (!viewer.classList.contains("is-open")) return;
-
-          if (event.key === "Escape") {
-            closePhoto();
-          } else if (event.key === "ArrowLeft") {
-            openPhoto(currentIndex - 1);
-          } else if (event.key === "ArrowRight") {
-            openPhoto(currentIndex + 1);
-          }
-        });
-
-        // Start on page 1 without scrolling.
-        showPage(1, false);
-      }
-
-      if (document.readyState === "loading") {
-        document.addEventListener(
-          "DOMContentLoaded",
-          initializeBirdingGallery
-        );
-      } else {
-        initializeBirdingGallery();
-      }
-    })();
-  </script>
-
-  <script src="scripts/bootstrap.bundle.min.js?ver=1.2.0"></script>
-  <script src="scripts/aos.js?ver=1.2.0"></script>
-  <script src="scripts/main.js?ver=1.2.0"></script>
+    </script>
 
 </body>
 </html>
